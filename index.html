@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Inicio</title>
 </head>
 <body>
-    <div>
-        <input type="button" value="Ver Noticias" id="noticias">
+    <div class="container">
+        <div class="cabecera">
+            <h1 class="logo">HostingCO</h1>
+            <div class="navegador">
+                <ul class="mimenu">
+                    <li><a class="ancla" href="#">Inicio</a></li>
+                    <li><a class="ancla" href="#">Galeria</a></li>
+                    <li><a class="ancla" href="#">Presupuesto</a></li>
+                    <li><a class="ancla" href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <video autoplay muted loop class="bg-video">
+                <source src="./assets/video/principal-hd_1280_720.mp4" type="video/mp4">
+            </video>
+            <input type="button" value="Ver Noticias" id="noticias">
+        </div>
     </div>
+    
     <script src="./js/app.js"></script>
 </body>
 </html>
