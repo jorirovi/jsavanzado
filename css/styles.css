@@ -38,7 +38,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-rows: 4rem 1fr 5rem;
+    grid-template-rows: 4rem 1fr 6.8rem;
 }
 /* Estilos para la cabecera*/
 .cabecera {
@@ -131,4 +131,100 @@ body {
 }
 .subtitle {
     color: var(--rojos-1);
+}
+.section3 {
+    background-color: var(--amaril-3);
+    display: grid;
+    grid-template-rows: 3rem 1fr;
+}
+.contenedortitulo {
+    background-color: var(--rojos-1);
+    display: flex;
+}
+.contenedortitulo h2 {
+    margin: 0;
+    color: var(--azules-4);
+    align-self: center;
+    padding-left: .5rem;
+}
+.contenedornoti {
+    padding: .5rem 2rem;
+}
+.noti-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.noti-cards {
+    background: var(--rojos-1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+}
+.noti-cards img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+.noti-cards .contenido {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
+.noti-cards h3 {
+    margin: 0;
+    line-height: 1.3;
+    font-size: 1rem;
+}
+.noti-cards p {
+    margin: 0;
+    line-height: 1.5;
+    color: #444
+}
+.noti-cards a {
+    margin-top: .5rem;
+    text-decoration: none;
+    font-weight: 700;
+    color:var(--azules-4);
+}
+.noti-cards a:hover {
+    text-decoration: underline;
+}
+/* Estilos para el Pie de Paginas*/
+.piepri {
+    background-color: var(--azules-5);
+}
+.piepri > h2 {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 0;
+    color: var(--rojos-1);
+    font-family: h1h2font, Arial, sans-serif;
+}
+.piepri > p {
+    color: var(--rojos-1);
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.iconos {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+}
+.iconos > i {
+    font-size: 1.5rem;
+    color: var(--rojos-1)
+}
+.iconos > i:hover{
+    cursor: pointer;
+    color: var(--amaril-2)
 }
