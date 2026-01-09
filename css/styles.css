@@ -128,9 +128,12 @@ body {
     line-height: 1.5;
     font-size: large;
     color: var(--azules-5);
+    height: 90%;
 }
 .subtitle {
     color: var(--rojos-1);
+    height: 10%;
+
 }
 .section3 {
     background-color: var(--amaril-3);
@@ -159,9 +162,11 @@ body {
     background: var(--rojos-1);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.8);
     display: flex;
     flex-direction: column;
+}
+.noti-cards:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,1);
 }
 .noti-cards img {
     width: 100%;
@@ -183,7 +188,9 @@ body {
 .noti-cards p {
     margin: 0;
     line-height: 1.5;
-    color: #444
+    color: #444;
+    overflow: scroll;
+    height: 3rem;
 }
 .noti-cards a {
     margin-top: .5rem;
