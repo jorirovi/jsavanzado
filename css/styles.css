@@ -45,7 +45,7 @@ body {
     position: sticky;
     top: 0;
     height: 4rem;
-    z-index: 1000;
+    z-index: 99999;
     background: var(--azules-5);
 
     display: flex;

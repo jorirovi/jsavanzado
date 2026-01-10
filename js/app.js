@@ -2,38 +2,46 @@ const xhr = new XMLHttpRequest();
 const API_KEY = '8ae9539a9c5439a57658bbb0fb62e8ab';
 const category = 'technology';
 const d = document;
-const itemsMenu = [
-    {
-        titulo: "Inicio",
-        url: "../index.html"
-    },
-    {
-        titulo: "Galeria",
-        url: "#"
-    },
-    {
-        titulo: "Presupuesto",
-        url: "#"
-    },
-    {
-        titulo: "Contacto",
-        url: "#"
+//array para el menu
+$(document).ready(function () {
+    const enVistas = window.location.pathname.includes("/views/")
+    const base = enVistas ? ".." : "."
+    const itemsMenu = [
+        {
+            titulo: "Inicio",
+            url: `${base}/index.html`
+        },
+        {
+            titulo: "Galeria",
+            url: `${base}/views/galeria.html`
+        },
+        {
+            titulo: "Presupuesto",
+            url: "#"
+        },
+        {
+            titulo: "Contacto",
+            url: "#"
+        }
+    ];
+    //Script para carga de menu
+    for(let i = 0; i < itemsMenu.length; i++) {
+        $(".mimenu").append($(`<li><a class='ancla' href="${itemsMenu[i].url}">${itemsMenu[i].titulo}</a></li>`))
     }
-];
+});
+
 //script para el main
-const btn = d.getElementById('noticias');
 const txt = d.getElementById('texto');
 const parr1 = d.getElementById('p1');
 const parr2 = d.getElementById('p2');
 const imagen = d.getElementById('imgqs');
-txt.textContent = "Empresa líder en soluciones 360º dentro de la industria de tecnologia, el entretenimiento y la movilidad corporativa.";
-parr1.innerHTML = "Transformamos la manera en que las <strong>empresas</strong> y <strong>emprendedores</strong> construyen su presencia digital. Somos una compañía especializada en servicios de <strong>Hosting</strong>, <strong>desarrollo web</strong>, <strong>soluciones en la nube</strong> y <strong>arquitectura tecnológica personalizada</strong>, orientada a ofrecer rendimiento, seguridad y escalabilidad en cada proyecto."
-parr2.innerHTML = "Brindar una infraestructura <strong>confiable </strong>y <strong>moderna</strong>, combinada con un equipo experto en innovación digital, para que nuestros clientes puedan enfocarse en hacer crecer su negocio mientras nosotros nos ocupamos del entorno tecnológico que lo impulsa.";
-
-//Script para carga de menu
-for(let i = 0; i < itemsMenu.length; i++) {
-    $(".mimenu").append($("<li><a class='ancla' href=" + itemsMenu[i].url + ">" + itemsMenu[i].titulo + "</a></li>"))
+if (txt || parr1 || parr2) {
+    txt.innerHTML = "Empresa líder en soluciones 360º dentro de la industria de tecnologia, el entretenimiento y la movilidad corporativa.";
+    parr1.innerHTML = "Transformamos la manera en que las <strong>empresas</strong> y <strong>emprendedores</strong> construyen su presencia digital. Somos una compañía especializada en servicios de <strong>Hosting</strong>, <strong>desarrollo web</strong>, <strong>soluciones en la nube</strong> y <strong>arquitectura tecnológica personalizada</strong>, orientada a ofrecer rendimiento, seguridad y escalabilidad en cada proyecto."
+    parr2.innerHTML = "Brindar una infraestructura <strong>confiable</strong> y <strong>moderna</strong>, combinada con un equipo experto en innovación digital, para que nuestros clientes puedan enfocarse en hacer crecer su negocio mientras nosotros nos ocupamos del entorno tecnológico que lo impulsa.";
 }
+
+
 
 //script para la carga de Noticias
 const notiGrid = d.getElementById('notigrid');
