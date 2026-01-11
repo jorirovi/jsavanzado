@@ -1,0 +1,19 @@
+{
+    "imagenes": [
+        {
+            "id": 1,
+            "nombre": "IoT",
+            "url": "https://jorirovi.github.io/asstesehostingco/iot.jpg"
+        },
+        {
+            "id": 2,
+            "nombre": "Hosting",
+            "url":"https://jorirovi.github.io/asstesehostingco/hosting.jpg"
+        },
+        {
+            "id": 3,
+            "nombre": "Inteligecia Artificial",
+            "url":"https://jorirovi.github.io/asstesehostingco/ia.jpg"
+        }
+    ]
+}

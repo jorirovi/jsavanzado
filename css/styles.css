@@ -24,7 +24,7 @@
     src: url("../assets/fonts/Raleway-VariableFont_wght.ttf");
 }
 * {
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 body {
     margin: 0;

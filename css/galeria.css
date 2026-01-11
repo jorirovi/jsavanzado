@@ -1,0 +1,23 @@
+.main-galeria {
+    display: grid;
+    grid-template-rows: 450px 300px;
+}
+.section1-galeria {
+    position: relative;
+}
+.galeria-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.vtext-galeria {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: var(--rojos-2);
+    text-align: center;
+    font-size: 35px;
+    font-family: textvideo, Arial, Helvetica, sans-serif;
+}

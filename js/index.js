@@ -3,32 +3,7 @@ const API_KEY = '8ae9539a9c5439a57658bbb0fb62e8ab';
 const category = 'technology';
 const d = document;
 //array para el menu
-$(document).ready(function () {
-    const enVistas = window.location.pathname.includes("/views/")
-    const base = enVistas ? ".." : "."
-    const itemsMenu = [
-        {
-            titulo: "Inicio",
-            url: `${base}/index.html`
-        },
-        {
-            titulo: "Galeria",
-            url: `${base}/views/galeria.html`
-        },
-        {
-            titulo: "Presupuesto",
-            url: "#"
-        },
-        {
-            titulo: "Contacto",
-            url: "#"
-        }
-    ];
-    //Script para carga de menu
-    for(let i = 0; i < itemsMenu.length; i++) {
-        $(".mimenu").append($(`<li><a class='ancla' href="${itemsMenu[i].url}">${itemsMenu[i].titulo}</a></li>`))
-    }
-});
+
 
 //script para el main
 const txt = d.getElementById('texto');
