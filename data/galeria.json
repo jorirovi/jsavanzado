@@ -14,6 +14,16 @@
             "id": 3,
             "nombre": "Inteligecia Artificial",
             "url":"https://jorirovi.github.io/asstesehostingco/ia.jpg"
+        },
+        {
+            "id": 4,
+            "nombre": "Inteligecia Artificial",
+            "url":"https://jorirovi.github.io/asstesehostingco/tiendas-online.jpg"
+        },
+        {
+            "id": 5,
+            "nombre": "Inteligecia Artificial",
+            "url":"https://jorirovi.github.io/asstesehostingco/servidores.jpg"
         }
     ]
 }

@@ -21,3 +21,9 @@
     font-size: 35px;
     font-family: textvideo, Arial, Helvetica, sans-serif;
 }
+.opac50 {
+    opacity: .5;
+}
+.opac75 {
+    opacity: .75;
+}
