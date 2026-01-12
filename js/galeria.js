@@ -7,22 +7,7 @@ $(document).ready(() => {
             if (xhrg.status >= 200 && xhrg.status < 300) {
                 const galeria = JSON.parse(xhrg.responseText);
                 const fotos = galeria.imagenes;
-                let num = 0;
-                for (const foto of fotos) {
-                    num++;
-                    if (num === 2 || num === 4) {
-                        const $img = `<img class="opac75" src="${foto.url}" alt="${foto.nombre}" height="100%" width="300px">`
-                        $("#galeria").append($img);
-                    } else if (num === 3){
-                        const $img = `<img src="${foto.url}" alt="${foto.nombre}" height="100%" width="300px">`
-                        $("#galeria").append($img);
-                    } else {
-                        const $img = `<img class="opac50" src="${foto.url}" alt="${foto.nombre}" height="100%" width="300px">`
-                        $("#galeria").append($img);
-                    }
-                    
-                    
-                }
+                console.log(fotos);
             } else {
                 console.error('no se pudo conectar a las imagenes');
             }
