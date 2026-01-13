@@ -26,6 +26,7 @@ const swiper = new Swiper('.tarjeta-wrapper', {
   // Optional parameters
   direction: 'horizontal',
   loop: true,
+  spaceBetween: 16,
 
   // pagination bullets
   pagination: {
@@ -36,5 +37,10 @@ const swiper = new Swiper('.tarjeta-wrapper', {
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
+  },
+  slidesPerView: 1,
+  breakpoints: {
+    700: { slidesPerView: 1 },
+    1024: { slidesPerView: 3 },
   },
 });

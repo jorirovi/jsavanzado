@@ -28,7 +28,7 @@
 }
 .tarjeta-lista .tarjeta-items .tarjeta-link {
     --webkit-user-select: none;
-    width: 100%;
+    width: 330px;
     display: block;
     background-color: #fff;
     padding: 18px;
