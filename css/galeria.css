@@ -24,7 +24,9 @@
 }
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 480px;
+    margin: 0 auto;
+    background: var(--rojos-1);
 }
 .tarjeta-lista .tarjeta-items .tarjeta-link {
     --webkit-user-select: none;
@@ -39,7 +41,7 @@
     transition: 0,2s ease;
 }
 .tarjeta-lista .tarjeta-items .tarjeta-link:hover {
-    border-color: var(--rojos-1);
+    border-color: var(--azules-1);
 }
 .tarjeta-lista .tarjeta-items {
     list-style: none;

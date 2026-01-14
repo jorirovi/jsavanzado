@@ -26,21 +26,22 @@ const swiper = new Swiper('.tarjeta-wrapper', {
   // Optional parameters
   direction: 'horizontal',
   loop: true,
-  spaceBetween: 16,
+  spaceBetween: 0,
 
   // pagination bullets
   pagination: {
     el: '.swiper-pagination',
+    clickable: true,
   },
 
-  // Navigation arrows
+  /* Navigation arrows
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
-  },
+  },*/
   slidesPerView: 1,
   breakpoints: {
-    700: { slidesPerView: 1 },
-    1024: { slidesPerView: 3 },
+    700: { slidesPerView: 1, spaceBetween: 0 },
+    1200: { slidesPerView: 3, spaceBetween: 0 },
   },
 });
