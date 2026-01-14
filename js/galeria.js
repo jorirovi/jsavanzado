@@ -27,6 +27,9 @@ const swiper = new Swiper('.tarjeta-wrapper', {
   direction: 'horizontal',
   loop: true,
   spaceBetween: 0,
+  autoplay: {
+    delay: 5000,
+  },
 
   // pagination bullets
   pagination: {
