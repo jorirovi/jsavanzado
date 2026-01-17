@@ -2,8 +2,6 @@ const xhr = new XMLHttpRequest();
 const API_KEY = '8ae9539a9c5439a57658bbb0fb62e8ab';
 const category = 'technology';
 const d = document;
-//array para el menu
-
 
 //script para el main
 const txt = d.getElementById('texto');
@@ -19,28 +17,63 @@ if (txt || parr1 || parr2) {
 
 
 //script para la carga de Noticias
-const notiGrid = d.getElementById('notigrid');
+const indicadores = d.getElementById('indicador');
+const inicioCarrusel = d.getElementById('iniciador')
 try {
     xhr.addEventListener('readystatechange', () => {
         if(xhr.readyState !== 4) return;
         if(xhr.status >= 200 && xhr.status < 300){
             const noticias = JSON.parse(xhr.responseText);
-            notiGrid.innerHTML = noticias.articles.map(noticia => {
-                const notiimg    = noticia.image || "https://picsum.dev/300/200";
-                const notititulo = noticia.title ?? "Sin Titulo";
-                const notidesc   = noticia.description ?? "";
-                const notiurl    = noticia.url ?? "";
-                return `
-                    <article class="noti-cards">
-                        <img src="${notiimg}" alt="${notititulo}"></img>
-                        <div class="contenido">
-                            <h3>${notititulo}</h3>
-                            <p>${notidesc}</p>
-                            <a href="${notiurl}" target="_blank" rel="noopener noreferrer">Ver Noticia</a>
-                        </div>
-                    </article>
-                `
-            }).join("");
+            const data = noticias.articles;
+            indicadores.innerHTML = "";
+            indicadores.classList.add('carousel-indicators')
+            for (let i = 0; i < data.length; i++){
+                const boton = d.createElement('button');
+                boton.type = 'button';
+                boton.dataset.bsTarget = '#carouselExampleCaptions';
+                boton.dataset.bsSlideTo = i;
+                boton.setAttribute('aria-label', `Slide ${i + 1}`);
+
+                if (i === 0) {
+                    boton.classList.add('active');
+                    boton.setAttribute('aria-current', 'true');
+                }
+
+                indicadores.appendChild(boton);
+            }
+            inicioCarrusel.innerHTML = "";
+            inicioCarrusel.classList.add('carousel-inner');
+            for (let i = 0; i < data.length; i++){
+                // contenedor de img principal
+                const divContenedor = d.createElement('div');
+                divContenedor.classList.add('carousel-item')
+                if (i === 0) {
+                    divContenedor.classList.add('active');
+                }
+                // imagenes
+                const img = d.createElement('img');
+                img.src = data[i].image || "https://picsum.dev/300/200";
+                img.classList.add('d-block', 'w-100');
+                img.alt = data[i].id;
+                // captions
+                const divCaptions = d.createElement('div')
+                divCaptions.classList.add('carousel-caption', 'd-none', 'd-md-block');
+                //titulo
+                const h5Title = d.createElement('h5');
+                h5Title.textContent = data[i].title;
+                //contendo
+                const pContenido = d.createElement('p');
+                pContenido.textContent = data[i].description;
+
+                divCaptions.appendChild(h5Title);
+                divCaptions.appendChild(pContenido);
+
+                divContenedor.appendChild(img);
+                divContenedor.appendChild(divCaptions);
+
+                inicioCarrusel.appendChild(divContenedor);
+            }
+            
         }
         else {
             console.error(xhr.status);

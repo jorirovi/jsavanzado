@@ -33,12 +33,12 @@ body {
     background-color: var(--background-color);
 }
 /* Estilos para el contenedor Principal */
-.container {
+.my-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-rows: 4rem 1fr 6.8rem;
+    grid-template-rows: 4rem 1fr 7.5rem;
 }
 /* Estilos para la cabecera*/
 .cabecera {
@@ -136,7 +136,7 @@ body {
 
 }
 .section3 {
-    background-color: var(--amaril-3);
+    background-color: var(--rojos-1);
     display: grid;
     grid-template-rows: 3rem 1fr;
 }
@@ -150,57 +150,24 @@ body {
     align-self: center;
     padding-left: .5rem;
 }
-.contenedornoti {
-    padding: .5rem 2rem;
+/*Estilos para el carrusel */
+/* contenedor del carrusel */
+#carouselExampleCaptions {
+  max-width: 100%;
 }
-.noti-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+
+/* imágenes */
+#carouselExampleCaptions .carousel-item img {
+  height: 460px;        /* elige una altura estándar */
+  object-fit: cover;
+  aspect-ratio: 16 / 9;    /* recorta sin deformar */
 }
-.noti-cards {
-    background: var(--rojos-1);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+
+#carouselExampleCaptions .carousel-item .carousel-caption {
+    color: var(--rojos-2);
+    font-weight: bolder;
 }
-.noti-cards:hover {
-    box-shadow: 0 6px 18px rgba(0,0,0,1);
-}
-.noti-cards img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-}
-.noti-cards .contenido {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem
-}
-.noti-cards h3 {
-    margin: 0;
-    line-height: 1.3;
-    font-size: 1rem;
-}
-.noti-cards p {
-    margin: 0;
-    line-height: 1.5;
-    color: #444;
-    overflow: scroll;
-    height: 3rem;
-}
-.noti-cards a {
-    margin-top: .5rem;
-    text-decoration: none;
-    font-weight: 700;
-    color:var(--azules-4);
-}
-.noti-cards a:hover {
-    text-decoration: underline;
-}
+
 /* Estilos para el Pie de Paginas*/
 .piepri {
     background-color: var(--azules-5);
