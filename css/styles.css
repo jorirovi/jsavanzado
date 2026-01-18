@@ -151,18 +151,15 @@ body {
     padding-left: .5rem;
 }
 /*Estilos para el carrusel */
-/* contenedor del carrusel */
 #carouselExampleCaptions {
   max-width: 100%;
 }
-
 /* imágenes */
 #carouselExampleCaptions .carousel-item img {
-  height: 460px;        /* elige una altura estándar */
+  height: 460px;
   object-fit: cover;
-  aspect-ratio: 16 / 9;    /* recorta sin deformar */
+  aspect-ratio: 16 / 9; 
 }
-
 #carouselExampleCaptions .carousel-item .carousel-caption {
     color: var(--rojos-2);
     font-weight: bolder;

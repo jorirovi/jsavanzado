@@ -7,34 +7,41 @@ $(function () {
             if (xhrg.status >= 200 && xhrg.status < 300) {
                 const data = JSON.parse(xhrg.responseText);
                 const fotos = data.imagenes;
-                const $wrapper = $(".tarjeta-lista.swiper-wrapper");
+                const $wrapper = $(".galery-container");
                 $wrapper.empty();
                 for (const foto of fotos){
-                    $wrapper.append(`
-                        <li class="tarjeta-items swiper-slide">
-                            <div class="tarjeta-link">
-                                <img src="${foto.url}" alt="${foto.nombre}" class="tarjeta-img">
-                                <p class="referencia-img">${foto.nombre}</p>
-                                <h2 class="tarjeta-titulo">${foto.descripcion}</h2>
-                                <button class="tarjeta-boton material-symbols-rounded">arrow_forward</button>
-                            </div>
-                        </li>    
-                    `);  
+                    const $card = $('<div>')
+                        .addClass('prod-card');
+                    const $img = $('<img>')
+                        .addClass('prod-img')
+                        .attr({
+                            src: foto.url,
+                            alt: foto.nombre
+                        });
+                    const $info = $('<div>')
+                        .addClass('prod-info');
+                    const $h2 = $('<h2>')
+                        .addClass('prod-title')
+                        .text(foto.nombre);
+                    const $contp = $('<div>')
+                        .css({
+                            height: '150px',
+                            alignContent: 'center'
+                        });
+                    const $p = $('<p>')
+                        .addClass('prod-desc')
+                        .text(foto.descripcion);
+                    const $boton = $('<input>')
+                        .addClass('prod-presup')
+                        .attr({
+                            type: 'button',
+                            value: 'Presupuesto'
+                        });
+                    $contp.append($p);
+                    $info.append($h2, $contp, $boton);
+                    $card.append($img, $info);
+                    $wrapper.append($card);
                 }
-                // Inicializa Swiper DESPUÉS de crear los slides
-                new Swiper(".tarjeta-wrapper", {
-                    direction: "horizontal",
-                    loop: true,
-                    spaceBetween: 16,
-                    autoplay: { delay: 5000 },
-                    pagination: { el: ".swiper-pagination", clickable: true },
-                    //navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-                    slidesPerView: 1,
-                    breakpoints: {
-                        700: { slidesPerView: 1 },
-                        1200: { slidesPerView: 3 },
-                    },
-                });  
             } else {
                 console.error('no se pudo conectar a las imagenes');
             }

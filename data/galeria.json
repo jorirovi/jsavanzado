@@ -4,31 +4,37 @@
             "id": 1,
             "nombre": "Internet of Things",
             "url": "https://jorirovi.github.io/asstesehostingco/iot.jpg",
-            "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            "descripcion": "Con Internet of Things (IoT) puedes conectar tus equipos, productos y procesos a internet para monitorearlos y controlarlos en tiempo real. Esto permite automatizar operaciones, reducir costos, mejorar la eficiencia, anticipar fallas."
         },
         {
             "id": 2,
             "nombre": "Hosting",
             "url":"https://jorirovi.github.io/asstesehostingco/hosting.jpg",
-            "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            "descripcion": "Con hosting puedes alojar tu sitio web y aplicaciones en servidores seguros y siempre disponibles, permitiendo que tus clientes accedan a ellos rápida y confiablemente desde cualquier lugar, sin preocuparte por la infraestructura técnica."
         },
         {
             "id": 3,
             "nombre": "Inteligecia Artificial",
             "url":"https://jorirovi.github.io/asstesehostingco/ia.jpg",
-            "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            "descripcion": "Con Inteligencia Artificial (IA) puedes automatizar tareas, analizar grandes volúmenes de datos y tomar decisiones inteligentes, mejorando la eficiencia, la atención al cliente y la rentabilidad de tu negocio."
         },
         {
             "id": 4,
             "nombre": "Tiendas Online",
             "url":"https://jorirovi.github.io/asstesehostingco/tiendas-online.jpg",
-            "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            "descripcion": "Con tiendas online puedes vender tus productos o servicios por internet las 24/7, llegar a más clientes, automatizar pagos y envíos, y hacer crecer tu negocio sin límites geográficos."
         },
         {
             "id": 5,
             "nombre": "Servidores VPS",
             "url":"https://jorirovi.github.io/asstesehostingco/servidores.jpg",
-            "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            "descripcion": "Con servidores VPS puedes contar con recursos dedicados y mayor control, alojar aplicaciones y sitios web con mejor rendimiento, seguridad y escalabilidad, sin el costo de un servidor físico."
+        },
+        {
+            "id": 6,
+            "nombre": "Paginas Web",
+            "url":"https://jorirovi.github.io/asstesehostingco/paginas_web.png",
+            "descripcion": "Con creación de páginas web puedes desarrollar una presencia profesional en internet, mostrar tu marca, atraer clientes y convertir visitas en oportunidades de negocio."
         }
     ]
 }
