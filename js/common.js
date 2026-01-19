@@ -16,7 +16,7 @@ $(document).ready(function () {
         },
         {
             titulo: "Presupuesto",
-            url: "#"
+            url: `${base}/views/presupuesto.html`
         },
         {
             titulo: "Contacto",
@@ -24,27 +24,41 @@ $(document).ready(function () {
         }
     ];
     //Script para carga de menu
+    const $menu = $(".mimenu");
     for(let i = 0; i < itemsMenu.length; i++) {
-        $(".mimenu").append($(`<li><a class='ancla' href="${itemsMenu[i].url}">${itemsMenu[i].titulo}</a></li>`))
+        const $li = $("<li>");
+        const $a = $("<a>");
+        $a.addClass("ancla");
+        $a.attr({
+            href: itemsMenu[i].url
+        });
+        $a.text(itemsMenu[i].titulo)
+        $li.append($a);
+        $menu.append($li);
     }
     const itemsFooter = [
         {
             id: "whatsapp",
-            ico: "fa-brands fa-whatsapp iuno"
+            ico: "fa-brands fa-whatsapp iuno",
+            url: "#"
         },
         {
             id: "instagram",
-            ico: "fa-brands fa-instagram idos"
+            ico: "fa-brands fa-instagram idos",
+            url: "#"
         },
         {
             id: "facebook",
-            ico: "fa-brands fa-facebook itres"
+            ico: "fa-brands fa-facebook itres",
+            url: "#"
         },
         {
             id: "x",
-            ico: "fa-brands fa-x icuatro"
+            ico: "fa-brands fa-x icuatro",
+            url: "#"
         }
     ];
+    
     for(let i = 0; i < itemsFooter.length; i++){
         $(".iconos").append(`<i class="${itemsFooter[i].ico}"></i>`)
     };
