@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/presupuesto.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>eHostingCO - Presupuesto</title>
 </head>
@@ -16,7 +17,7 @@
             </div>
         </div>
         <div class="main">
-            <form action="" class="frm-contacto" method="post">
+            <form name="frmpresupuesto" action="" class="frm-contacto" method="post">
                 <fieldset>
                     <legend>Datos Personales</legend>
                     <input type="text" name="nombre" placeholder="Indique su Nombre" title="Formato de nombre incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="15" required>
@@ -26,12 +27,17 @@
                 </fieldset>
                 <fieldset>
                     <legend>Presupuesto</legend>
-                    <select name="servicio" id="servicio">
-                        <option value="uno">Uno</option>
-                    </select>
+                    <fieldset>
+                        <legend>Servicios</legend>
+                        <select name="servicio" id="servicio" onchange="seleccionaServicio(this.value)">
+                            <option value="">Seleccione un Servicio:</option>
+                        </select>
+                    </fieldset>
+                    <fieldset id="plazos" class="ocultar"></fieldset>
+                    <fieldset id="planes" class="ocultar"></fieldset>
                 </fieldset>
                 <input type="submit" value="Enviar">
-                <input type="reset" value="Limpiar">
+                <input type="reset" value="Limpiar" onclick="cleanDOM()">
             </form>
         </div>
         <div class="piepri">
@@ -41,6 +47,8 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/presupuesto.js"></script>
 </body>
 </html>

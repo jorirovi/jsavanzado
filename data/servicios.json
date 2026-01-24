@@ -1,0 +1,103 @@
+{
+    "servicios": [
+        {
+            "id": 1,
+            "nombre": "Internet of Things (IoT)",
+            "url": "https://jorirovi.github.io/asstesehostingco/iot.jpg",
+            "descripcion": "Con Internet of Things (IoT) puedes conectar tus equipos, productos y procesos a internet para monitorearlos y controlarlos en tiempo real.",
+            "items" : ["Plataforma IoT básica", "Hasta 3 dispositivos", "Dashbord estandar", "Soporte Básico"],
+            "preciomes": 40,
+            "precioanual": 400
+        },
+        {
+            "id": 2,
+            "nombre": "Hosting",
+            "url":"https://jorirovi.github.io/asstesehostingco/hosting.jpg",
+            "descripcion": "Con hosting puedes alojar tu sitio web y aplicaciones en servidores seguros y siempre disponibles, permitiendo que tus clientes accedan a ellos rápida y confiablemente desde cualquier lugar, sin preocuparte por la infraestructura técnica.",
+            "items":["Espacio en Disco", "Trafico", "Correos", "Soporte"],
+            "preciomes": 9,
+            "precioanual": 97.2 
+        },
+        {
+            "id": 3,
+            "nombre": "Inteligecia Artificial",
+            "url":"https://jorirovi.github.io/asstesehostingco/ia.jpg",
+            "descripcion": "Con Inteligencia Artificial (IA) puedes automatizar tareas, analizar grandes volúmenes de datos y tomar decisiones inteligentes, mejorando la eficiencia, la atención al cliente y la rentabilidad de tu negocio.",
+            "items": ["Modelo Activo", "Uso Estandar", "Soporte Estandar"],
+            "preciomes": 50,
+            "precioanual": 500
+        },
+        {
+            "id": 4,
+            "nombre": "Tiendas Online",
+            "url":"https://jorirovi.github.io/asstesehostingco/tiendas-online.jpg",
+            "descripcion": "Con tiendas online puedes vender tus productos o servicios por internet las 24/7, llegar a más clientes, automatizar pagos y envíos, y hacer crecer tu negocio sin límites geográficos.",
+            "items": ["Hosting", "Tienda Funcional", "Soporte Básico"],
+            "preciomes": 45,
+            "precioanual": 450
+        },
+        {
+            "id": 5,
+            "nombre": "Servidores VPS",
+            "url":"https://jorirovi.github.io/asstesehostingco/servidores.jpg",
+            "descripcion": "Con servidores VPS puedes contar con recursos dedicados y mayor control, alojar aplicaciones y sitios web con mejor rendimiento, seguridad y escalabilidad, sin el costo de un servidor físico.",
+            "items": ["Servidor Activo", "Recursos Base", "Soporte Estandar"],
+            "preciomes": 30,
+            "precioanual": 300
+        },
+        {
+            "id": 6,
+            "nombre": "Paginas Web",
+            "url":"https://jorirovi.github.io/asstesehostingco/paginas_web.png",
+            "descripcion": "Con creación de páginas web puedes desarrollar una presencia profesional en internet, mostrar tu marca, atraer clientes y convertir visitas en oportunidades de negocio.",
+            "items": ["Hosting","Pagina Operativa", "Soporte Básico"],
+            "preciomes": 25,
+            "precioanual": 250
+        }
+    ],
+    "planes_adicionales": [
+        {
+            "id": 1,
+            "idservicio": 1,
+            "items" : [
+                {
+                    "id": 1,
+                    "nombre": "Dispositivo adicional",
+                    "costM": 5,
+                    "costA": 50
+                },
+                {
+                    "id": 2,
+                    "nombre":"Monitoreo en tiempo real",
+                    "costM": 6,
+                    "costA": 60
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "idservicio": 6,
+            "items": []
+        },
+        {
+            "id": 3,
+            "idservicio": 4,
+            "items": []
+        },
+        {
+            "id": 4,
+            "idservicio": 5,
+            "items": []
+        },
+        {
+            "id": 5,
+            "idservicio": 3,
+            "items": []
+        },
+        {
+            "id": 6,
+            "idservicio": 2,
+            "items":[]
+        }
+    ]
+}

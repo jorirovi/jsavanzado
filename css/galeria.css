@@ -30,7 +30,7 @@
 .galery-container {
     display: grid;
     grid-template-columns: repeat(3, 350px);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 2fr);
     gap: 2rem;
     place-content: center;
     margin: 65px auto
@@ -83,7 +83,7 @@
 /*Fin de esra galeria*/
 .swiper {
     width: 100%;
-    height: 480px;
+    height: 600px;
     margin: 0 auto;
     background: var(--rojos-1);
 }
