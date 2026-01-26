@@ -2,16 +2,41 @@
 //Inicializamos variables
 const connect = new XMLHttpRequest();
 let serviciosAdicionales = [];
+let servicios = [];
+
+//en este fildset estara el combobox servicio
+const $servicios = $('#servicios');
+const $legendS = $('<legend>')
+    .text('Servicios');
+const $selectS = $('<select>')
+    .attr({
+        id: 'servicio',
+        name: 'servicio'
+    });
+$selectS.append(
+    $('<option>', {
+        value: '',
+        text: 'Seleccione un servicio',
+        disabled: true,
+        selected: true
+    })
+);
+$servicios.append($legendS, $selectS);
+//conexion AJAX a JSON de los datos
 try {
     connect.addEventListener('readystatechange', () => {
         if(connect.readyState !== 4) return;
         if(connect.status >= 200 && connect.status < 300) {
             const result = JSON.parse(connect.responseText);
-            const data = result.servicios;
+            //const data = result.servicios;
+            servicios = result.servicios;
             serviciosAdicionales = result.planes_adicionales
-            data.forEach(element => {
-                const opt = new Option(element.nombre, element.id);
-                frmpresupuesto.servicio.options[frmpresupuesto.servicio.options.length] = opt
+            servicios.forEach(item => {
+                $selectS.append(
+                $('<option>', {
+                    value: item.id,
+                    text: item.nombre
+                }));
             });
         }
         else {
@@ -31,29 +56,25 @@ function cleanDOM(){
     $planes.empty().addClass("ocultar");
 }
 
-function seleccionaServicio(id){
+//al seleccionar un item del combobox de servicio
+$selectS.on('change', function() {
     const $plazos = $("#plazos");
     $plazos.empty().removeClass("ocultar")
     const $legendP = $("<legend>")
         .text("Plazo del Contrato");
     const $labelPm = $('<label>');
-    const $labelPa = $('<label>');
-    const $radioM = $("<input>")
-        .attr({
-            type: 'radio',
-            name: 'plazo',
-            value: 'mensual'
-        });
-    const $radioA = $("<input>")
-        .attr({
-            type: 'radio',
-            name: 'plazo',
-            value: 'Anual'
-        });
-    $labelPm.append($radioM).append(' Mensual')
-    $labelPa.append($radioA).append(' Anual')
-    $plazos.append($legendP, $labelPm, $labelPa);
-    const aditionalPlans = serviciosAdicionales.find(s => s.idservicio === parseInt(id));
+    const $inpMes = $('<input>');
+    $inpMes.attr({
+        type: 'number',
+        min: 1,
+        max: 24,
+        title: 'Debe contener de 1 a 24 meses',
+        step: 1,
+        required: true
+    });
+    $labelPm.append('Indique la cantidad de meses')
+    $plazos.append($legendP, $labelPm, $inpMes);
+    const aditionalPlans = serviciosAdicionales.find(s => s.idservicio === parseInt($(this).val()));
     const $plans = $('#planes')
     $plans.empty().removeClass('ocultar');
     const $legengPlans = $("<legend>");
@@ -69,4 +90,13 @@ function seleccionaServicio(id){
         $checkLabel.append($cheks).append(item.nombre);
         $plans.append($legengPlans, $checkLabel);
     });
-}
+    //control para el marcada y desmarcado de cheksbox
+    $plans.on('change', 'input[type="checkbox"][name="planes"]', function(){
+        const id = $(this).val();
+        if ($(this).is(':checked')){
+            console.log('marcado: ', id);
+        } else {
+            console.log('desmarcado: ', id)
+        }
+    });
+});

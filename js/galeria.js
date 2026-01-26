@@ -30,7 +30,7 @@ $(function () {
                         .text(foto.nombre);
                     const $contp = $('<div>')
                         .css({
-                            height: '250px',
+                            height: '210px',
                             alignContent: 'center'
                         });
                     const $p = $('<p>')
@@ -43,16 +43,13 @@ $(function () {
                     const $p3 = $('<p>')
                         .addClass('prod-desc')
                         .text('Plan mensual desde: ' + formatoEUR.format(foto.preciomes));
-                    const $p4 = $('<p>')
-                        .addClass('prod-desc')
-                        .text('Plan Anual desde: ' + formatoEUR.format(foto.precioanual));
                     const $boton = $('<input>')
                         .addClass('prod-presup')
                         .attr({
                             type: 'button',
                             value: 'Presupuesto'
                         });
-                    $contp.append($p, $p2, $p3, $p4);
+                    $contp.append($p, $p2, $p3);
                     $info.append($h2, $contp, $boton);
                     $card.append($img, $info);
                     $wrapper.append($card);

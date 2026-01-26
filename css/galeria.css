@@ -30,7 +30,7 @@
 .galery-container {
     display: grid;
     grid-template-columns: repeat(3, 350px);
-    grid-template-rows: repeat(2, 2fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 2rem;
     place-content: center;
     margin: 65px auto

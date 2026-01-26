@@ -6,8 +6,7 @@
             "url": "https://jorirovi.github.io/asstesehostingco/iot.jpg",
             "descripcion": "Con Internet of Things (IoT) puedes conectar tus equipos, productos y procesos a internet para monitorearlos y controlarlos en tiempo real.",
             "items" : ["Plataforma IoT básica", "Hasta 3 dispositivos", "Dashbord estandar", "Soporte Básico"],
-            "preciomes": 40,
-            "precioanual": 400
+            "preciomes": 40
         },
         {
             "id": 2,
@@ -15,8 +14,7 @@
             "url":"https://jorirovi.github.io/asstesehostingco/hosting.jpg",
             "descripcion": "Con hosting puedes alojar tu sitio web y aplicaciones en servidores seguros y siempre disponibles, permitiendo que tus clientes accedan a ellos rápida y confiablemente desde cualquier lugar, sin preocuparte por la infraestructura técnica.",
             "items":["Espacio en Disco", "Trafico", "Correos", "Soporte"],
-            "preciomes": 9,
-            "precioanual": 97.2 
+            "preciomes": 9
         },
         {
             "id": 3,
@@ -24,8 +22,7 @@
             "url":"https://jorirovi.github.io/asstesehostingco/ia.jpg",
             "descripcion": "Con Inteligencia Artificial (IA) puedes automatizar tareas, analizar grandes volúmenes de datos y tomar decisiones inteligentes, mejorando la eficiencia, la atención al cliente y la rentabilidad de tu negocio.",
             "items": ["Modelo Activo", "Uso Estandar", "Soporte Estandar"],
-            "preciomes": 50,
-            "precioanual": 500
+            "preciomes": 50
         },
         {
             "id": 4,
@@ -33,8 +30,7 @@
             "url":"https://jorirovi.github.io/asstesehostingco/tiendas-online.jpg",
             "descripcion": "Con tiendas online puedes vender tus productos o servicios por internet las 24/7, llegar a más clientes, automatizar pagos y envíos, y hacer crecer tu negocio sin límites geográficos.",
             "items": ["Hosting", "Tienda Funcional", "Soporte Básico"],
-            "preciomes": 45,
-            "precioanual": 450
+            "preciomes": 45
         },
         {
             "id": 5,
@@ -42,8 +38,7 @@
             "url":"https://jorirovi.github.io/asstesehostingco/servidores.jpg",
             "descripcion": "Con servidores VPS puedes contar con recursos dedicados y mayor control, alojar aplicaciones y sitios web con mejor rendimiento, seguridad y escalabilidad, sin el costo de un servidor físico.",
             "items": ["Servidor Activo", "Recursos Base", "Soporte Estandar"],
-            "preciomes": 30,
-            "precioanual": 300
+            "preciomes": 30
         },
         {
             "id": 6,
@@ -51,8 +46,7 @@
             "url":"https://jorirovi.github.io/asstesehostingco/paginas_web.png",
             "descripcion": "Con creación de páginas web puedes desarrollar una presencia profesional en internet, mostrar tu marca, atraer clientes y convertir visitas en oportunidades de negocio.",
             "items": ["Hosting","Pagina Operativa", "Soporte Básico"],
-            "preciomes": 25,
-            "precioanual": 250
+            "preciomes": 25
         }
     ],
     "planes_adicionales": [
@@ -63,14 +57,27 @@
                 {
                     "id": 1,
                     "nombre": "Dispositivo adicional",
-                    "costM": 5,
-                    "costA": 50
+                    "costM": 5
                 },
                 {
                     "id": 2,
                     "nombre":"Monitoreo en tiempo real",
-                    "costM": 6,
-                    "costA": 60
+                    "costM": 6
+                },
+                {
+                    "id": 3,
+                    "nombre": "Alertas Automaticas",
+                    "costM": 8
+                },
+                {
+                    "id": 4,
+                    "nombre": "Integración API",
+                    "costM": 20
+                },
+                {
+                    "id": 5,
+                    "nombre": "Soporte prioritario",
+                    "costM": 12
                 }
             ]
         },
