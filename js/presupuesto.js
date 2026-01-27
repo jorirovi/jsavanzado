@@ -3,6 +3,7 @@
 const connect = new XMLHttpRequest();
 let serviciosAdicionales = [];
 let servicios = [];
+let planesAcumulador = 0
 
 //en este fildset estara el combobox servicio
 const $servicios = $('#servicios');
@@ -79,24 +80,49 @@ $selectS.on('change', function() {
     $plans.empty().removeClass('ocultar');
     const $legengPlans = $("<legend>");
     $legengPlans.text('Planes Adicionales')
+    $plans.append($legengPlans);
+    const idSrv = aditionalPlans.idservicio; 
+    const $disp = $('<input>');
     aditionalPlans.items.forEach(item => {
         const $checkLabel = $("<label>");
         const $cheks = $("<input>")
             .attr({
                 type: "checkbox",
                 name: "planes",
-                value: item.id
+                value: item.id,
+                cost: item.costM
             });
-        $checkLabel.append($cheks).append(item.nombre);
-        $plans.append($legengPlans, $checkLabel);
+        $disp.attr({
+                type: 'number',
+                min: 2,
+                max: 99,
+                required: true,
+                title: 'debe seleccionar un numero entre 2 y 99',
+                step: 1
+            }).addClass('ocultar');
+        if (item.id === 1) {
+            $checkLabel.append($cheks, item.nombre, $disp);
+        } else {
+            $checkLabel.append($cheks, item.nombre);
+        }
+        $plans.append($checkLabel);
     });
     //control para el marcada y desmarcado de cheksbox
+    $plans.off('change', 'input[type="checkbox"][name="planes"]');
     $plans.on('change', 'input[type="checkbox"][name="planes"]', function(){
         const id = $(this).val();
         if ($(this).is(':checked')){
-            console.log('marcado: ', id);
+            if ((String(idSrv) === "1") && (String(id) === "1")) {
+                $disp.removeClass('ocultar');
+            }
+            planesAcumulador += parseFloat($(this).attr('cost'));
+            console.log('Acumulado: ', planesAcumulador);
         } else {
-            console.log('desmarcado: ', id)
+            if(String(id) === "1") {
+                $disp.addClass('ocultar');
+            }
+            planesAcumulador -= parseFloat($(this).attr('cost'));
+            console.log('Acomulado: ', planesAcumulador);
         }
     });
 });

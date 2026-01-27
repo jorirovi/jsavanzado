@@ -84,7 +84,28 @@
         {
             "id": 2,
             "idservicio": 6,
-            "items": []
+            "items": [
+                {
+                    "id": 1,
+                    "nombre": "Mantenimiento web",
+                    "costM": 15
+                },
+                {
+                    "id": 2,
+                    "nombre": "SEO Basico",
+                    "costM": 20
+                },
+                {
+                    "id": 3,
+                    "nombre": "Backups Automaticos",
+                    "costM": 8
+                },
+                {
+                    "id": 4,
+                    "nombre": "Certidicados SSL",
+                    "costM": 5
+                }
+            ]
         },
         {
             "id": 3,
