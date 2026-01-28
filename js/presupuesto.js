@@ -83,6 +83,13 @@ $selectS.on('change', function() {
     $plans.append($legengPlans);
     const idSrv = aditionalPlans.idservicio; 
     const $disp = $('<input>');
+    const $labelDisp = $('<label>')
+        .attr({
+            name: 'dispositivos',
+            for: 'dispositivos'
+        })
+        .text("Dispositivos")
+        .addClass('ocultar');
     aditionalPlans.items.forEach(item => {
         const $checkLabel = $("<label>");
         const $cheks = $("<input>")
@@ -93,15 +100,16 @@ $selectS.on('change', function() {
                 cost: item.costM
             });
         $disp.attr({
+                name: "dispositivos",
                 type: 'number',
-                min: 2,
+                min: 1,
                 max: 99,
                 required: true,
                 title: 'debe seleccionar un numero entre 2 y 99',
                 step: 1
             }).addClass('ocultar');
         if (item.id === 1) {
-            $checkLabel.append($cheks, item.nombre, $disp);
+            $checkLabel.append($cheks, item.nombre, $labelDisp, $disp);
         } else {
             $checkLabel.append($cheks, item.nombre);
         }
@@ -111,18 +119,42 @@ $selectS.on('change', function() {
     $plans.off('change', 'input[type="checkbox"][name="planes"]');
     $plans.on('change', 'input[type="checkbox"][name="planes"]', function(){
         const id = $(this).val();
+        let valor = 0;
+        const costoxDisp = parseFloat($(this).attr('cost'));
         if ($(this).is(':checked')){
             if ((String(idSrv) === "1") && (String(id) === "1")) {
+                $labelDisp.removeClass('ocultar');
                 $disp.removeClass('ocultar');
+                $disp.val();
+                let valorAnterior = parseInt($disp.val());
+                valor = parseFloat($(this).attr('cost'));
+                //planesAcumulador += valor;
+                $disp.on('change', function(){
+                    const valorActual = parseInt($disp.val());
+                    valor = parseFloat($disp.val()) * costoxDisp;
+                    if (valorActual > valorAnterior) {
+                        planesAcumulador += valor;
+                    } else {
+                        planesAcumulador -= valor;
+                    };
+                    alert('Acomulado: ' + planesAcumulador);
+                });
+                planesAcumulador += valor;
+                alert('Acumulado: ' + planesAcumulador)
+            } else {
+                planesAcumulador += parseFloat($(this).attr('cost'));
+                alert('Acumulado: ' + planesAcumulador);
             }
             planesAcumulador += parseFloat($(this).attr('cost'));
-            console.log('Acumulado: ', planesAcumulador);
+            alert('Acumulado: ' + planesAcumulador);
         } else {
             if(String(id) === "1") {
+                $labelDisp.addClass('ocultar');
                 $disp.addClass('ocultar');
+                $disp.val(1);
             }
             planesAcumulador -= parseFloat($(this).attr('cost'));
-            console.log('Acomulado: ', planesAcumulador);
+            alert('Acomulado: ', planesAcumulador);
         }
     });
 });
