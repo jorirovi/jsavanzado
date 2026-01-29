@@ -115,46 +115,59 @@ $selectS.on('change', function() {
         }
         $plans.append($checkLabel);
     });
+    //funcion para calculo de dispositivos adicionales
+    function calculoDispAdicional(n, costxDisp) {
+        n = Number(n) || 0
+        if(n < 0) n = 0
+        return n * costxDisp
+    }
+    let extraUltimoCosto = 0;
     //control para el marcada y desmarcado de cheksbox
     $plans.off('change', 'input[type="checkbox"][name="planes"]');
     $plans.on('change', 'input[type="checkbox"][name="planes"]', function(){
         const id = $(this).val();
-        let valor = 0;
-        const costoxDisp = parseFloat($(this).attr('cost'));
+        const costoxDisp = parseFloat($(this).attr('cost') || 0);
+        const esIoTConCantidad = (String(idSrv) === "1" && String(id) === "1");
         if ($(this).is(':checked')){
-            if ((String(idSrv) === "1") && (String(id) === "1")) {
+            if (esIoTConCantidad) {
                 $labelDisp.removeClass('ocultar');
                 $disp.removeClass('ocultar');
-                $disp.val();
-                let valorAnterior = parseInt($disp.val());
-                valor = parseFloat($(this).attr('cost'));
-                //planesAcumulador += valor;
-                $disp.on('change', function(){
-                    const valorActual = parseInt($disp.val());
-                    valor = parseFloat($disp.val()) * costoxDisp;
-                    if (valorActual > valorAnterior) {
-                        planesAcumulador += valor;
-                    } else {
-                        planesAcumulador -= valor;
-                    };
-                    alert('Acomulado: ' + planesAcumulador);
-                });
-                planesAcumulador += valor;
-                alert('Acumulado: ' + planesAcumulador)
+                if (!$disp.val()) $disp.val(1);
+                const nuevoCosto = calculoDispAdicional($disp.val(), costoxDisp);
+                planesAcumulador += (nuevoCosto - extraUltimoCosto);
+                extraUltimoCosto = nuevoCosto
             } else {
-                planesAcumulador += parseFloat($(this).attr('cost'));
+                planesAcumulador += parseFloat($(this).attr('cost') || 0);
                 alert('Acumulado: ' + planesAcumulador);
             }
-            planesAcumulador += parseFloat($(this).attr('cost'));
-            alert('Acumulado: ' + planesAcumulador);
         } else {
-            if(String(id) === "1") {
+            if(esIoTConCantidad) {
+                planesAcumulador -= extraUltimoCosto;
+                extraUltimoCosto = 0
                 $labelDisp.addClass('ocultar');
                 $disp.addClass('ocultar');
-                $disp.val(1);
+                $disp.val(0);
+                alert('Acumulado: ', planesAcumulador)
+            } else {
+                planesAcumulador -= parseFloat($(this).attr('cost') || 0);
+                alert('Acomulado: ' + planesAcumulador);
             }
-            planesAcumulador -= parseFloat($(this).attr('cost'));
-            alert('Acomulado: ', planesAcumulador);
         }
     });
+    //listener del input de cantidad
+    $disp.off('change');
+    $disp.on('change', function(){
+        const chk = $plans.find('input[type="checkbox"][name="planes"][value="1"]');
+        if (!chk.is(':checked') || String(idSrv) !== "1") return;
+        const costoxDisp = parseFloat(chk.attr('cost')) || 0;
+        let n = parseInt($(this).val(), 10);
+        if(Number.isNaN(n) || n < 0) n = 0;
+        $(this).val(n);
+
+        const nuevoCosto = calculoDispAdicional(n, costoxDisp);
+        planesAcumulador += (nuevoCosto - extraUltimoCosto);
+        extraUltimoCosto = nuevoCosto;
+
+        alert('Acumulado: ' + planesAcumulador);
+    })
 });
