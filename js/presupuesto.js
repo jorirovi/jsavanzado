@@ -3,7 +3,8 @@
 const connect = new XMLHttpRequest();
 let serviciosAdicionales = [];
 let servicios = [];
-let planesAcumulador = 0
+let planesAcumulador = 0;
+let totalPlan = 0;
 
 //en este fildset estara el combobox servicio
 const $servicios = $('#servicios');
@@ -23,7 +24,7 @@ $selectS.append(
     })
 );
 $servicios.append($legendS, $selectS);
-//conexion AJAX a JSON de los datos
+//conexion AJAX al JSON de los datos
 try {
     connect.addEventListener('readystatechange', () => {
         if(connect.readyState !== 4) return;
@@ -57,6 +58,16 @@ function cleanDOM(){
     $planes.empty().addClass("ocultar");
 }
 
+function costoTotalPlanI(acum = 0, precioPlan = 0) {
+    totalPlan = acum + precioPlan
+    return totalPlan
+}
+ 
+function costoTotalPlanD(acum = 0, precioPlan = 0) {
+    totalPlan = precioPlan - acum
+    return totalPlan
+}
+
 //al seleccionar un item del combobox de servicio
 $selectS.on('change', function() {
     const $plazos = $("#plazos");
@@ -75,7 +86,9 @@ $selectS.on('change', function() {
     });
     $labelPm.append('Indique la cantidad de meses')
     $plazos.append($legendP, $labelPm, $inpMes);
+    const precioSrv = servicios.find(s => s.id === parseInt($(this).val()));
     const aditionalPlans = serviciosAdicionales.find(s => s.idservicio === parseInt($(this).val()));
+    totalPlan = parseFloat(precioSrv.preciomes);
     const $plans = $('#planes')
     $plans.empty().removeClass('ocultar');
     const $legengPlans = $("<legend>");
@@ -115,6 +128,19 @@ $selectS.on('change', function() {
         }
         $plans.append($checkLabel);
     });
+    const $totalLabel = $('<label>')
+        .attr({
+            name: 'totalP',
+            for: 'totalP'
+        }).text('Total del Plan');
+    const $totalPlan = $('<input>')
+        .attr({
+            type: 'number',
+            name: 'totalP',
+            disabled: true
+        });
+    $totalPlan.val(totalPlan);
+    $('#presupuesto').append($totalLabel, $totalPlan);
     //funcion para calculo de dispositivos adicionales
     function calculoDispAdicional(n, costxDisp) {
         n = Number(n) || 0
@@ -135,13 +161,16 @@ $selectS.on('change', function() {
                 if (!$disp.val()) $disp.val(1);
                 const nuevoCosto = calculoDispAdicional($disp.val(), costoxDisp);
                 planesAcumulador += (nuevoCosto - extraUltimoCosto);
+                $totalPlan.val(costoTotalPlanI(planesAcumulador, totalPlan));
                 extraUltimoCosto = nuevoCosto
             } else {
                 planesAcumulador += parseFloat($(this).attr('cost') || 0);
+                $totalPlan.val(costoTotalPlanI(planesAcumulador, totalPlan));
                 alert('Acumulado: ' + planesAcumulador);
             }
         } else {
             if(esIoTConCantidad) {
+                $totalPlan.val(costoTotalPlanD(planesAcumulador, totalPlan));
                 planesAcumulador -= extraUltimoCosto;
                 extraUltimoCosto = 0
                 $labelDisp.addClass('ocultar');
@@ -149,6 +178,7 @@ $selectS.on('change', function() {
                 $disp.val(0);
                 alert('Acumulado: ', planesAcumulador)
             } else {
+                $totalPlan.val(costoTotalPlanD(planesAcumulador, totalPlan));
                 planesAcumulador -= parseFloat($(this).attr('cost') || 0);
                 alert('Acomulado: ' + planesAcumulador);
             }
@@ -166,8 +196,9 @@ $selectS.on('change', function() {
 
         const nuevoCosto = calculoDispAdicional(n, costoxDisp);
         planesAcumulador += (nuevoCosto - extraUltimoCosto);
+        $totalPlan.val(costoTotalPlanI(planesAcumulador, totalPlan));
         extraUltimoCosto = nuevoCosto;
 
         alert('Acumulado: ' + planesAcumulador);
-    })
+    });
 });
