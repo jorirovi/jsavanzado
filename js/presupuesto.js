@@ -5,6 +5,7 @@ let serviciosAdicionales = [];
 let servicios = [];
 let planesAcumulador = 0;
 let totalPlan = 0;
+let totalConDescuento = 0;
 
 
 //en este fildset estara el combobox servicio
@@ -60,19 +61,8 @@ function cleanDOM(){
     $planes.empty().addClass("ocultar");
 }
 
-//funcion para incrmentar el precio del servicio de los planes adicionales
-function costoTotalPlanI(acum = 0, precioPlan = 0) {
-    totalPlan = acum + precioPlan
-    return totalPlan
-}
-//funcion para restar el precio del servcicio de los plabes adicionales
-function costoTotalPlanD(acum = 0, precioPlan = 0) {
-    totalPlan = precioPlan - acum
-    return totalPlan
-}
 //funcion recalcular plan
 function recalcularPrecioPlan(valor = 0) {
-    let totalConDescuento = 0;
     let porcetajeDescuento = 0;
     const meses = parseInt(valor);
     if (meses >= 6 && meses < 12) porcetajeDescuento = 0.1; //10%
@@ -80,6 +70,13 @@ function recalcularPrecioPlan(valor = 0) {
     else if(meses >= 20) porcetajeDescuento = 0.3; //30%
     totalConDescuento = totalPlan - (totalPlan * porcetajeDescuento);
     $totalPlan.val(totalConDescuento);
+    $presuTotal.val(parseFloat(totalConDescuento + planesAcumulador));
+}
+//funcion para calcular el total del presupuesto
+function calcularTotalPresupuesto() {
+    let precioTotal = 0;
+    precioTotal = totalConDescuento + planesAcumulador;
+    return precioTotal;
 }
 
 //totales
@@ -88,27 +85,39 @@ const $totalLabel = $('<label>')
     .attr({
         name: 'pservicio',
         for: 'pservicio'
-    }).text('Costo del Servicio:');
+    }).text('Costo del Servicio');
 const $totalPlan = $('<input>')
     .attr({
         type: 'number',
         name: 'pservicio',
-        disabled: true
+        readonly: true
     }).val(totalPlan);
 const $planesAcumLabel = $('<label>')
     .attr({
         name: 'acumtotal',
         for: 'acumtotal',
     })
-    .text('Planes Adicionale:');
+    .text('Planes Adicionale');
 const $planesAcum = $('<input>')
     .attr({
         type: 'number',
         name: 'acumtotal',
-        disabled: true
+        readonly: true
     })
     .val(planesAcumulador);
-$('#totales').append($totalesLegend, $totalLabel, $totalPlan, $planesAcumLabel, $planesAcum);
+const $presuTotalLabel = $('<label>')
+    .attr({
+        name: 'presutotal',
+        for: 'presutotal'
+    })
+    .text('Total Presupuesto');
+const $presuTotal = $('<input>')
+    .attr({
+        type: 'number',
+        name: 'presutotal',
+        readonly: true
+    }).val(0);
+$('#totales').append($totalesLegend, $totalLabel, $totalPlan, $planesAcumLabel, $planesAcum, $presuTotalLabel, $presuTotal);
 
 //al seleccionar un item del combobox de servicio 
 $selectS.on('change', function() {
@@ -127,13 +136,26 @@ $selectS.on('change', function() {
         required: true
     });
     $labelPm.append('Indique la cantidad de meses')
+    const $sinDescuento = $('<p>')
+        .text('De 1 a 5 meses 0% de descuento sobre el costo del servicio');
+    const $diezPorcierto = $('<p>')
+        .text('De 6 a 11 meses 10% de descuento sobre el costo del servicio');
+    const $veintePorciento = $('<p>')
+        .text('De 12 a 19 meses 20% de descuento sobre el costo del servicio');
+    const $trintaPorciento = $('<p>')
+        .text('De 20 a 24 meses 30% de descuento sobre el costo del servicio');
+    $plazos.append($sinDescuento, $diezPorcierto, $veintePorciento, $trintaPorciento)
     $plazos.append($legendP, $labelPm, $inpMes);
     totalPlan = 0;
+    totalConDescuento = 0;
+    planesAcumulador = 0;
+    $planesAcum.val(0);
     const precioSrv = servicios.find(s => s.id === parseInt($(this).val()));
     totalPlan = parseFloat(precioSrv.preciomes);
     $totalPlan.val(totalPlan);
     $inpMes.val(1);
     recalcularPrecioPlan($inpMes.val());
+    $presuTotal.val(parseFloat(totalPlan));
     //listener para el input de meses
     $inpMes.off('change');
     $inpMes.on('change', function() {
@@ -200,26 +222,27 @@ $selectS.on('change', function() {
                 if (!$disp.val()) $disp.val(1);
                 const nuevoCosto = calculoDispAdicional($disp.val(), costoxDisp);
                 planesAcumulador += (nuevoCosto - extraUltimoCosto);
-                $totalPlan.val(costoTotalPlanI(planesAcumulador, totalPlan));
+                $planesAcum.val(planesAcumulador);
+                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
                 extraUltimoCosto = nuevoCosto
             } else {
                 planesAcumulador += parseFloat($(this).attr('cost') || 0);
-                $totalPlan.val(costoTotalPlanI(planesAcumulador, totalPlan));
-                alert('Acumulado: ' + planesAcumulador);
+                $planesAcum.val(planesAcumulador);
+                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
             }
         } else {
             if(esIoTConCantidad) {
-                $totalPlan.val(costoTotalPlanD(planesAcumulador, totalPlan));
                 planesAcumulador -= extraUltimoCosto;
+                $planesAcum.val(planesAcumulador);
+                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
                 extraUltimoCosto = 0
                 $labelDisp.addClass('ocultar');
                 $disp.addClass('ocultar');
                 $disp.val(0);
-                alert('Acumulado: ', planesAcumulador)
             } else {
-                $totalPlan.val(costoTotalPlanD(planesAcumulador, totalPlan));
                 planesAcumulador -= parseFloat($(this).attr('cost') || 0);
-                alert('Acomulado: ' + planesAcumulador);
+                $planesAcum.val(planesAcumulador);
+                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
             }
         }
     });
@@ -235,9 +258,10 @@ $selectS.on('change', function() {
 
         const nuevoCosto = calculoDispAdicional(n, costoxDisp);
         planesAcumulador += (nuevoCosto - extraUltimoCosto);
-        $totalPlan.val(planesAcumulador + totalPlan);
+        $planesAcum.val(planesAcumulador);
         extraUltimoCosto = nuevoCosto;
 
-        alert('Acumulado: ' + planesAcumulador);
+        $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
+
     });
 });
