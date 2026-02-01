@@ -6,6 +6,7 @@ let servicios = [];
 let planesAcumulador = 0;
 let totalPlan = 0;
 
+
 //en este fildset estara el combobox servicio
 const $servicios = $('#servicios');
 const $legendS = $('<legend>')
@@ -51,6 +52,7 @@ try {
     console.error('Error al cargar Datos', err);
 }
 
+//funcion para limpiar el DOM
 function cleanDOM(){
     const $plazos = $("#plazos");
     $plazos.empty().addClass("ocultar");
@@ -58,17 +60,57 @@ function cleanDOM(){
     $planes.empty().addClass("ocultar");
 }
 
+//funcion para incrmentar el precio del servicio de los planes adicionales
 function costoTotalPlanI(acum = 0, precioPlan = 0) {
     totalPlan = acum + precioPlan
     return totalPlan
 }
- 
+//funcion para restar el precio del servcicio de los plabes adicionales
 function costoTotalPlanD(acum = 0, precioPlan = 0) {
     totalPlan = precioPlan - acum
     return totalPlan
 }
+//funcion recalcular plan
+function recalcularPrecioPlan(valor = 0) {
+    let totalConDescuento = 0;
+    let porcetajeDescuento = 0;
+    const meses = parseInt(valor);
+    if (meses >= 6 && meses < 12) porcetajeDescuento = 0.1; //10%
+    else if(meses >= 12 && meses < 20) porcetajeDescuento = 0.2 //20%
+    else if(meses >= 20) porcetajeDescuento = 0.3; //30%
+    totalConDescuento = totalPlan - (totalPlan * porcetajeDescuento);
+    $totalPlan.val(totalConDescuento);
+}
 
-//al seleccionar un item del combobox de servicio
+//totales
+const $totalesLegend = $('<legend>').text('Totales');
+const $totalLabel = $('<label>')
+    .attr({
+        name: 'pservicio',
+        for: 'pservicio'
+    }).text('Costo del Servicio:');
+const $totalPlan = $('<input>')
+    .attr({
+        type: 'number',
+        name: 'pservicio',
+        disabled: true
+    }).val(totalPlan);
+const $planesAcumLabel = $('<label>')
+    .attr({
+        name: 'acumtotal',
+        for: 'acumtotal',
+    })
+    .text('Planes Adicionale:');
+const $planesAcum = $('<input>')
+    .attr({
+        type: 'number',
+        name: 'acumtotal',
+        disabled: true
+    })
+    .val(planesAcumulador);
+$('#totales').append($totalesLegend, $totalLabel, $totalPlan, $planesAcumLabel, $planesAcum);
+
+//al seleccionar un item del combobox de servicio 
 $selectS.on('change', function() {
     const $plazos = $("#plazos");
     $plazos.empty().removeClass("ocultar")
@@ -86,9 +128,18 @@ $selectS.on('change', function() {
     });
     $labelPm.append('Indique la cantidad de meses')
     $plazos.append($legendP, $labelPm, $inpMes);
+    totalPlan = 0;
     const precioSrv = servicios.find(s => s.id === parseInt($(this).val()));
-    const aditionalPlans = serviciosAdicionales.find(s => s.idservicio === parseInt($(this).val()));
     totalPlan = parseFloat(precioSrv.preciomes);
+    $totalPlan.val(totalPlan);
+    $inpMes.val(1);
+    recalcularPrecioPlan($inpMes.val());
+    //listener para el input de meses
+    $inpMes.off('change');
+    $inpMes.on('change', function() {
+        recalcularPrecioPlan($(this).val());
+    });
+    const aditionalPlans = serviciosAdicionales.find(s => s.idservicio === parseInt($(this).val()));
     const $plans = $('#planes')
     $plans.empty().removeClass('ocultar');
     const $legengPlans = $("<legend>");
@@ -128,19 +179,7 @@ $selectS.on('change', function() {
         }
         $plans.append($checkLabel);
     });
-    const $totalLabel = $('<label>')
-        .attr({
-            name: 'totalP',
-            for: 'totalP'
-        }).text('Total del Plan');
-    const $totalPlan = $('<input>')
-        .attr({
-            type: 'number',
-            name: 'totalP',
-            disabled: true
-        });
-    $totalPlan.val(totalPlan);
-    $('#presupuesto').append($totalLabel, $totalPlan);
+
     //funcion para calculo de dispositivos adicionales
     function calculoDispAdicional(n, costxDisp) {
         n = Number(n) || 0
@@ -196,7 +235,7 @@ $selectS.on('change', function() {
 
         const nuevoCosto = calculoDispAdicional(n, costoxDisp);
         planesAcumulador += (nuevoCosto - extraUltimoCosto);
-        $totalPlan.val(costoTotalPlanI(planesAcumulador, totalPlan));
+        $totalPlan.val(planesAcumulador + totalPlan);
         extraUltimoCosto = nuevoCosto;
 
         alert('Acumulado: ' + planesAcumulador);
