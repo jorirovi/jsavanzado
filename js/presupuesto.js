@@ -1,5 +1,9 @@
 //Script para la pagina de presupuesto
+
+import validacionContacto from "./validaciones.js";
+
 //Inicializamos variables
+const d = document;
 const connect = new XMLHttpRequest();
 let serviciosAdicionales = [];
 let servicios = [];
@@ -12,6 +16,10 @@ const descuentos = [
     "De 12 a 19 meses 20% de descuento sobre el costo del servicio",
     "De 20 a 24 meses 30% de descuento sobre el costo del servicio"
 ]
+//validaciones
+d.addEventListener('DOMContentLoaded', (e) => {
+    validacionContacto();
+})
 
 //en este fildset estara el combobox servicio
 const $servicios = $('#servicios');

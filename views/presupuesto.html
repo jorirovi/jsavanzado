@@ -20,7 +20,7 @@
             <form name="frmpresupuesto" action="" class="frm-contacto" method="post">
                 <fieldset class="frm-datos">
                     <legend>Datos Personales</legend>
-                    <input id="nom" type="text" name="nombre" placeholder="Indique su Nombre" title="Formato de nombre incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="15" required>
+                    <input type="text" name="nombre" placeholder="Indique su Nombre" title="Formato de nombre incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="15" required>
                     <input type="text" name="apellido" placeholder="Indique su Apellido" title="Formato de Apellido Incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="40" required>
                     <input type="tel" name="telefono" id="telefono" placeholder="Numero de telefono" title="Formato de Telefono incorrecto" maxlength="9" pattern="^[6789]\d{8}$" required>
                     <input type="email" name="email" id="email" placeholder="Indique su Email" title="Formato de email incorrecto" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
@@ -45,6 +45,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="../js/common.js"></script>
-    <script src="../js/presupuesto.js"></script>
+    <script type="module" src="../js/presupuesto.js"></script>
 </body>
 </html>
