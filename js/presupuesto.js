@@ -6,7 +6,12 @@ let servicios = [];
 let planesAcumulador = 0;
 let totalPlan = 0;
 let totalConDescuento = 0;
-
+const descuentos = [
+    "De 1 a 5 meses 0% de descuento sobre el costo del servicio",
+    "De 6 a 11 meses 10% de descuento sobre el costo del servicio",
+    "De 12 a 19 meses 20% de descuento sobre el costo del servicio",
+    "De 20 a 24 meses 30% de descuento sobre el costo del servicio"
+]
 
 //en este fildset estara el combobox servicio
 const $servicios = $('#servicios');
@@ -125,9 +130,15 @@ $selectS.on('change', function() {
     $plazos.empty().removeClass("ocultar")
     const $legendP = $("<legend>")
         .text("Plazo del Contrato");
-    const $labelPm = $('<label>');
+    const $labelPm = $('<label>')
+        .attr({
+            name: 'meses',
+            for: 'meses'
+        })
+        .text('Indique Cantidad de meses del contrato');
     const $inpMes = $('<input>');
     $inpMes.attr({
+        name: 'meses',
         type: 'number',
         min: 1,
         max: 24,
@@ -135,16 +146,13 @@ $selectS.on('change', function() {
         step: 1,
         required: true
     });
-    $labelPm.append('Indique la cantidad de meses')
-    const $sinDescuento = $('<p>')
-        .text('De 1 a 5 meses 0% de descuento sobre el costo del servicio');
-    const $diezPorcierto = $('<p>')
-        .text('De 6 a 11 meses 10% de descuento sobre el costo del servicio');
-    const $veintePorciento = $('<p>')
-        .text('De 12 a 19 meses 20% de descuento sobre el costo del servicio');
-    const $trintaPorciento = $('<p>')
-        .text('De 20 a 24 meses 30% de descuento sobre el costo del servicio');
-    $plazos.append($sinDescuento, $diezPorcierto, $veintePorciento, $trintaPorciento)
+    const $ol = $('<ul>')
+    for(let i = 0; i < descuentos.length; i++){
+        const $li = $('<li>')
+            .text(descuentos[i]);
+        $ol.append($li);
+    }
+    $plazos.append($ol);
     $plazos.append($legendP, $labelPm, $inpMes);
     totalPlan = 0;
     totalConDescuento = 0;
