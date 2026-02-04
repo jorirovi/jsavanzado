@@ -24,3 +24,15 @@
 .mostrar-etiqueta {
     margin-top: 1rem;
 }
+.input-error{
+    margin-top: -1rem;
+    font-size: 80%;
+    background: red;
+    color: white;
+    transition: all 800ms ease;
+    width: 500px
+}
+.input-error.is-active{
+    display: block;
+    animation: show-message 1s normal 0s ease-out both;
+}
