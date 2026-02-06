@@ -145,13 +145,12 @@ $selectS.on('change', function() {
         .text('Indique Cantidad de meses del contrato');
     const $inpMes = $('<input>');
     $inpMes.attr({
+        id: 'mes',
         name: 'meses',
         type: 'number',
         min: 1,
         max: 24,
         title: 'Debe contener de 1 a 24 meses',
-        step: 1,
-        required: true
     });
     const $ol = $('<ul>')
     for(let i = 0; i < descuentos.length; i++){
@@ -205,11 +204,9 @@ $selectS.on('change', function() {
                 type: 'number',
                 min: 1,
                 max: 99,
-                required: true,
-                title: 'debe seleccionar un numero entre 2 y 99',
-                step: 1
+                title: 'debe seleccionar un numero entre 1 y 99',
             }).addClass('ocultar');
-        if (item.id === 1) {
+        if (item.id === 1 && item.nombre === 'Dispositivo adicional') {
             $checkLabel.append($cheks, item.nombre, $labelDisp, $disp);
         } else {
             $checkLabel.append($cheks, item.nombre);

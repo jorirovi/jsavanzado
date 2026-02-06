@@ -17,13 +17,13 @@
             </div>
         </div>
         <div class="main">
-            <form name="frmpresupuesto" action="" class="frm-contacto" method="post">
+            <form name="frmpresupuesto" action="./galeria.html" class="frm-contacto">
                 <fieldset class="frm-datos">
                     <legend>Datos Personales</legend>
-                    <input type="text" name="nombre" placeholder="Indique su Nombre" title="Formato de nombre incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="15" required>
+                    <input type="text" name="nombre" placeholder="Indique su Nombre" title="Formato de nombre incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]+$" maxlength="15" required>
                     <input type="text" name="apellido" placeholder="Indique su Apellido" title="Formato de Apellido Incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="40" required>
-                    <input type="tel" name="telefono" id="telefono" placeholder="Numero de telefono" title="Formato de Telefono incorrecto" maxlength="9" pattern="^[6789]\d{8}$" required>
-                    <input type="email" name="email" id="email" placeholder="Indique su Email" title="Formato de email incorrecto" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                    <input type="text" name="tel" placeholder="Numero de telefono" title="Formato de Telefono incorrecto" maxlength="9" pattern="^[6789]\d{8}$" required>
+                    <input type="email" name="email" placeholder="Indique su Email" title="Formato de email incorrecto" required>
                 </fieldset>
                 <fieldset id="presupuesto">
                     <legend>Presupuesto</legend>
