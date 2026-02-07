@@ -37,8 +37,8 @@ export default function validacionContacto(){
             }
         }
     });
+    let hayError = false;
     d.addEventListener('submit', (e) => {
-        e.preventDefault();
         //Expresiones Regulares
         const regNombre   = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$/;
         const regApellido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
@@ -53,37 +53,50 @@ export default function validacionContacto(){
         const email     = d.querySelector('input[name="email"]').value
         const servicio  = d.getElementById('servicio').value;
         const numMes    = d.getElementById('mes').value;
-        const $chkDisp   = d.querySelector('input[name="planes"][value="1"]');
+        const $chkDisp  = d.querySelector('input[name="planes"][value="1"]');
+        const $numDisp  = d.querySelector('input[name="dispositivos"]');
         if (!regNombre.test(nombre) || nombre === '') {
             alert('Nombre no valido');
             return;
         }
         if (!regApellido.test(apellidos) || apellidos === ''){
             alert('Apellidos no valido');
+            hayError = true
             return;
         }
         if (!regTelefono.test(telefono) || telefono === ''){
             alert('Numero de teléfono no valido');
+            hayError = true
             return;
         }
         if (!regEmail.test(email) || email === ''){
             alert('Email no valido')
+            hayError = true;
+            return;
         }
         if (servicio === '') {
             alert('Debe seleccionar un servicio')
+            hayError = true;
             return;
         }
         if (!regNumMes.test(numMes) || numMes === '') {
             alert('Numero de meses debe ser un numero de 1 a 24');
+            hayError = true;
             return;
         }
         
-        if ($chkDisp?.checked) {
-            const numDisp = d.querySelector('input[name="dispositivos"]').value
-            if (!regNumDisp.test(numDisp) || numDisp === ''){
+        if ($chkDisp?.checked && $numDisp) {
+            if (!regNumDisp.test($numDisp.value) || numDisp === ''){
                 alert('El numero de dispositivos debe ser un numero entre 1 a 99');
+                hayError = true;
                 return;
             }
+        }
+
+        if (hayError) {
+            e.preventDefault();
+        } else {
+            alert('Fromulario enviado con Exito');
         }
     });
 }

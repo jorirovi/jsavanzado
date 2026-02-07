@@ -10,6 +10,7 @@
     width: 500px;
     height: 35px;
     box-sizing: border-box;
+    font-size: 16px;
 }
 .frm-datos input:focus {
     box-shadow: 3px 3px 0 0 rgba(95, 94, 93, 0.35);
@@ -35,4 +36,67 @@
 .input-error.is-active{
     display: block;
     animation: show-message 1s normal 0s ease-out both;
+}
+
+.servicios select {
+    width: 200px;
+    height: 35px;
+    padding: 5px 1px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--azules-1);
+    background-color: #fff;
+    cursor: pointer;
+}
+.plazos {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.plazos input {
+    width: 75px;
+    height: 35px;
+    appearance: none;
+    font-size: 16px;
+    padding-left: 16px;
+    border: 1px solid var(--azules-1);
+}
+.planes {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.planes .chk {
+    display: inline;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.contenedordispositivos {
+    display: block;
+    margin-top: .5rem;
+    margin-left: 2rem;
+    
+}
+.contenedordispositivos input {
+    margin-left: .5rem;
+    height: 25px;
+    width: 50px;
+}
+
+.totales {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+.totales input {
+    width: 45px;
+    height: 25px;
+    border: none;
+    appearance: none;
+    text-align: center;
+    background: none;
+    font-size: 16px;
+    font-weight: bolder;
 }

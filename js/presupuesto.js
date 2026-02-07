@@ -37,6 +37,7 @@ $selectS.append(
         selected: true
     })
 );
+$servicios.addClass('servicios');
 $servicios.append($legendS, $selectS);
 //conexion AJAX al JSON de los datos
 try {
@@ -68,10 +69,13 @@ try {
 //funcion para limpiar el DOM
 function cleanDOM(){
     const $plazos = $("#plazos");
-    $plazos.empty().addClass("ocultar");
+    $plazos.empty().removeClass('plazos').addClass("ocultar");
     const $planes = $("#planes");
-    $planes.empty().addClass("ocultar");
+    $planes.empty().removeClass('planes').addClass("ocultar");
 }
+
+//Ejecucion del boton de reset
+d.getElementById('limpiar').addEventListener('click', cleanDOM);
 
 //funcion recalcular plan
 function recalcularPrecioPlan(valor = 0) {
@@ -135,6 +139,7 @@ $('#totales').append($totalesLegend, $totalLabel, $totalPlan, $planesAcumLabel, 
 $selectS.on('change', function() {
     const $plazos = $("#plazos");
     $plazos.empty().removeClass("ocultar")
+    $plazos.addClass('plazos');
     const $legendP = $("<legend>")
         .text("Plazo del Contrato");
     const $labelPm = $('<label>')
@@ -178,18 +183,19 @@ $selectS.on('change', function() {
     const aditionalPlans = serviciosAdicionales.find(s => s.idservicio === parseInt($(this).val()));
     const $plans = $('#planes')
     $plans.empty().removeClass('ocultar');
+    $plans.addClass('planes');
     const $legengPlans = $("<legend>");
     $legengPlans.text('Planes Adicionales')
     $plans.append($legengPlans);
-    const idSrv = aditionalPlans.idservicio; 
-    const $disp = $('<input>');
+    const idSrv = aditionalPlans.idservicio;
+    const $contDisp = $('<div>').addClass('ocultar');
     const $labelDisp = $('<label>')
         .attr({
             name: 'dispositivos',
             for: 'dispositivos'
         })
         .text("Dispositivos")
-        .addClass('ocultar');
+    const $disp = $('<input>');
     aditionalPlans.items.forEach(item => {
         const $checkLabel = $("<label>");
         const $cheks = $("<input>")
@@ -198,16 +204,17 @@ $selectS.on('change', function() {
                 name: "planes",
                 value: item.id,
                 cost: item.costM
-            });
+            }).addClass('chk');
         $disp.attr({
                 name: "dispositivos",
                 type: 'number',
                 min: 1,
                 max: 99,
                 title: 'debe seleccionar un numero entre 1 y 99',
-            }).addClass('ocultar');
+            })
         if (item.id === 1 && item.nombre === 'Dispositivo adicional') {
-            $checkLabel.append($cheks, item.nombre, $labelDisp, $disp);
+            $contDisp.append($labelDisp, $disp);
+            $checkLabel.append($cheks, item.nombre, $contDisp);
         } else {
             $checkLabel.append($cheks, item.nombre);
         }
@@ -229,8 +236,8 @@ $selectS.on('change', function() {
         const esIoTConCantidad = (String(idSrv) === "1" && String(id) === "1");
         if ($(this).is(':checked')){
             if (esIoTConCantidad) {
-                $labelDisp.removeClass('ocultar');
-                $disp.removeClass('ocultar');
+                $contDisp.removeClass('ocultar');
+                $contDisp.addClass('contenedordispositivos');
                 if (!$disp.val()) $disp.val(1);
                 const nuevoCosto = calculoDispAdicional($disp.val(), costoxDisp);
                 planesAcumulador += (nuevoCosto - extraUltimoCosto);
@@ -248,8 +255,8 @@ $selectS.on('change', function() {
                 $planesAcum.val(planesAcumulador);
                 $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
                 extraUltimoCosto = 0
-                $labelDisp.addClass('ocultar');
-                $disp.addClass('ocultar');
+                $contDisp.removeClass('contenedordispositivos');
+                $contDisp.addClass('ocultar');
                 $disp.val(0);
             } else {
                 planesAcumulador -= parseFloat($(this).attr('cost') || 0);
