@@ -3,7 +3,6 @@ const d = document;
 export default function validacionContacto(){
     const $fildsetDatos = d.querySelector('.frm-datos'),
         $inputs = d.querySelectorAll(".frm-datos [required]");
-    console.log($inputs);
     
     $inputs.forEach((input) => {
         const $span = d.createElement("span");
@@ -19,8 +18,6 @@ export default function validacionContacto(){
                 pattern = $input.pattern || $input.dataset.pattern;
             //console.log(pattern);
             if(pattern){
-                console.log('tiene regex: ', pattern);
-
                 let regex = new RegExp(pattern);
                 return !regex.exec($input.value)
                     ? d.getElementById($input.name).classList.add('is-active')
@@ -28,7 +25,6 @@ export default function validacionContacto(){
             }
 
             if(!pattern){
-                console.log('NO tiene regex');
                 const valEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
                 let regex = new RegExp(valEmail);
                 return !regex.exec($input.value)
@@ -55,8 +51,11 @@ export default function validacionContacto(){
         const numMes    = d.getElementById('mes').value;
         const $chkDisp  = d.querySelector('input[name="planes"][value="1"]');
         const $numDisp  = d.querySelector('input[name="dispositivos"]');
+        const $autoriza = d.getElementById('chkconcen');
+
         if (!regNombre.test(nombre) || nombre === '') {
             alert('Nombre no valido');
+            hayError = true;
             return;
         }
         if (!regApellido.test(apellidos) || apellidos === ''){
@@ -91,6 +90,12 @@ export default function validacionContacto(){
                 hayError = true;
                 return;
             }
+        }
+        if (!$autoriza.checked) {
+            alert('Debe Marcar la Autorizacion');
+            hayError = true;
+        } else {
+            return;
         }
 
         if (hayError) {

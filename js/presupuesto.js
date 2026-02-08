@@ -66,6 +66,12 @@ try {
     console.error('Error al cargar Datos', err);
 }
 
+//Formato de Moneda para los precios
+const formatoEUR = new Intl.NumberFormat('es-ES', {
+                    style: 'currency',
+                    currency: 'EUR'
+                });
+
 //funcion para limpiar el DOM
 function cleanDOM(){
     const $plazos = $("#plazos");
@@ -92,7 +98,7 @@ function recalcularPrecioPlan(valor = 0) {
 function calcularTotalPresupuesto() {
     let precioTotal = 0;
     precioTotal = totalConDescuento + planesAcumulador;
-    return precioTotal;
+    return formatoEUR.format(precioTotal);
 }
 
 //totales
@@ -134,6 +140,17 @@ const $presuTotal = $('<input>')
         readonly: true
     }).val(0);
 $('#totales').append($totalesLegend, $totalLabel, $totalPlan, $planesAcumLabel, $planesAcum, $presuTotalLabel, $presuTotal);
+
+//Autorizacion
+const $concnLegend = $('<legend>').text('Autorización');
+const $concnLabel = $('<label>');
+const $concnChk = $('<input>')
+    .attr({
+        id: "chkconcen",
+        type: "checkbox"
+    });
+$concnLabel.append($concnChk, "¿Autoriza el tratamiento de información?")
+$('#concentimiento').append($concnLegend, $concnLabel);
 
 //al seleccionar un item del combobox de servicio 
 $selectS.on('change', function() {
@@ -220,7 +237,7 @@ $selectS.on('change', function() {
         }
         $plans.append($checkLabel);
     });
-
+    
     //funcion para calculo de dispositivos adicionales
     function calculoDispAdicional(n, costxDisp) {
         n = Number(n) || 0
