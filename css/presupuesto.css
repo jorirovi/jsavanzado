@@ -90,7 +90,7 @@
     gap: .5rem;
     align-items: center;
 }
-.totales input {
+.totales span {
     width: 60px;
     height: 25px;
     border: none;
@@ -99,6 +99,7 @@
     background: none;
     font-size: 16px;
     font-weight: bolder;
+    color: var(--rojos-1);
 }
 form .botones {
     display: inline;

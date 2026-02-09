@@ -91,14 +91,14 @@ function recalcularPrecioPlan(valor = 0) {
     else if(meses >= 12 && meses < 20) porcetajeDescuento = 0.2 //20%
     else if(meses >= 20) porcetajeDescuento = 0.3; //30%
     totalConDescuento = totalPlan - (totalPlan * porcetajeDescuento);
-    $totalPlan.val(totalConDescuento);
+    $totalPlan.text(formatoEUR.format(totalConDescuento));
     $presuTotal.val(parseFloat(totalConDescuento + planesAcumulador));
 }
 //funcion para calcular el total del presupuesto
 function calcularTotalPresupuesto() {
     let precioTotal = 0;
     precioTotal = totalConDescuento + planesAcumulador;
-    return formatoEUR.format(precioTotal);
+    return precioTotal;
 }
 
 //totales
@@ -108,37 +108,37 @@ const $totalLabel = $('<label>')
         name: 'pservicio',
         for: 'pservicio'
     }).text('Costo del Servicio');
-const $totalPlan = $('<input>')
-    .attr({
+const $totalPlan = $('<span>').text(formatoEUR.format(0));
+    /*.attr({
         type: 'number',
         name: 'pservicio',
         readonly: true
-    }).val(totalPlan);
+    }).val(totalPlan);*/
 const $planesAcumLabel = $('<label>')
     .attr({
         name: 'acumtotal',
         for: 'acumtotal',
     })
-    .text('Planes Adicionale');
-const $planesAcum = $('<input>')
-    .attr({
+    .text('Planes Adicionales');
+const $planesAcum = $('<span>').text(formatoEUR.format(planesAcumulador));
+    /*.attr({
         type: 'number',
         name: 'acumtotal',
         readonly: true
     })
-    .val(planesAcumulador);
+    .val(planesAcumulador);*/
 const $presuTotalLabel = $('<label>')
     .attr({
         name: 'presutotal',
         for: 'presutotal'
     })
     .text('Total Presupuesto');
-const $presuTotal = $('<input>')
-    .attr({
+const $presuTotal = $('<span>').text(formatoEUR.format(0));
+    /*.attr({
         type: 'number',
         name: 'presutotal',
         readonly: true
-    }).val(0);
+    }).val(0);*/
 $('#totales').append($totalesLegend, $totalLabel, $totalPlan, $planesAcumLabel, $planesAcum, $presuTotalLabel, $presuTotal);
 
 //Autorizacion
@@ -188,10 +188,10 @@ $selectS.on('change', function() {
     $planesAcum.val(0);
     const precioSrv = servicios.find(s => s.id === parseInt($(this).val()));
     totalPlan = parseFloat(precioSrv.preciomes);
-    $totalPlan.val(totalPlan);
+    $totalPlan.text(formatoEUR.format(totalPlan));
     $inpMes.val(1);
     recalcularPrecioPlan($inpMes.val());
-    $presuTotal.val(parseFloat(totalPlan));
+    $presuTotal.text(formatoEUR.format(parseFloat(totalPlan)));
     //listener para el input de meses
     $inpMes.off('change');
     $inpMes.on('change', function() {
@@ -258,27 +258,27 @@ $selectS.on('change', function() {
                 if (!$disp.val()) $disp.val(1);
                 const nuevoCosto = calculoDispAdicional($disp.val(), costoxDisp);
                 planesAcumulador += (nuevoCosto - extraUltimoCosto);
-                $planesAcum.val(planesAcumulador);
-                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
+                $planesAcum.text(formatoEUR.format(planesAcumulador));
+                $presuTotal.text(formatoEUR.format(parseFloat(calcularTotalPresupuesto())));
                 extraUltimoCosto = nuevoCosto
             } else {
                 planesAcumulador += parseFloat($(this).attr('cost') || 0);
-                $planesAcum.val(planesAcumulador);
-                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
+                $planesAcum.text(formatoEUR.format(planesAcumulador));
+                $presuTotal.text(formatoEUR.format(parseFloat(calcularTotalPresupuesto())));
             }
         } else {
             if(esIoTConCantidad) {
                 planesAcumulador -= extraUltimoCosto;
-                $planesAcum.val(planesAcumulador);
-                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
+                $planesAcum.text(formatoEUR.format(planesAcumulador));
+                $presuTotal.text(formatoEUR.format(parseFloat(calcularTotalPresupuesto())));
                 extraUltimoCosto = 0
                 $contDisp.removeClass('contenedordispositivos');
                 $contDisp.addClass('ocultar');
                 $disp.val(0);
             } else {
                 planesAcumulador -= parseFloat($(this).attr('cost') || 0);
-                $planesAcum.val(planesAcumulador);
-                $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
+                $planesAcum.text(formatoEUR.format(planesAcumulador));
+                $presuTotal.text(formatoEUR.format(parseFloat(calcularTotalPresupuesto())));
             }
         }
     });
@@ -294,10 +294,10 @@ $selectS.on('change', function() {
 
         const nuevoCosto = calculoDispAdicional(n, costoxDisp);
         planesAcumulador += (nuevoCosto - extraUltimoCosto);
-        $planesAcum.val(planesAcumulador);
+        $planesAcum.text(formatoEUR.format(planesAcumulador));
         extraUltimoCosto = nuevoCosto;
 
-        $presuTotal.val(parseFloat(calcularTotalPresupuesto()));
+        $presuTotal.text(formatoEUR.format(parseFloat(calcularTotalPresupuesto())));
 
     });
 });
