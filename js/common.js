@@ -20,7 +20,7 @@ $(document).ready(function () {
         },
         {
             titulo: "Contacto",
-            url: "#"
+            url: `${base}/views/contacto.html`
         }
     ];
     //Script para carga de menu
