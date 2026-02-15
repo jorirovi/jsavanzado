@@ -87,7 +87,7 @@ function success(pos){
                 case 0:
                     return L.marker(wp.latLng).bindPopup('Inicio');
                 case nWps-1:
-                    return L.marker(wp.latLng, {icon: ehIcon}).bindPopup(`eHostngCO<br>Tlf: ${telEH}<br>Email: ${emailEH}`);
+                    return L.marker(wp.latLng, {icon: ehIcon}).bindPopup(`<b>Contacta con Nosotros</b>:<br>eHostingCO<br><b>Tlf</b>: ${telEH}<br><b>Email</b>: ${emailEH}<br><b>Dir</b>: ${dirEH}`).openPopup();
             }
         }
     }).addTo(map);
