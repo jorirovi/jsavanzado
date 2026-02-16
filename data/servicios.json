@@ -109,23 +109,112 @@
         },
         {
             "id": 3,
-            "idservicio": 4,
-            "items": []
+            "idservicio": 3,
+            "items": [
+                {
+                    "id": 1,
+                    "nombre":"Consultas adicionales",
+                    "costM":15
+                },
+                {
+                    "id": 2,
+                    "nombre": "Entrenamiento del modelo",
+                    "costM": 30
+                },
+                {
+                    "id": 3,
+                    "nombre":"Integración API",
+                    "costM": 25
+                },
+                {
+                    "id": 4,
+                    "nombre": "Dashboard avanzado",
+                    "costM": 15
+                },
+                {
+                    "id": 5,
+                    "nombre": "SLA/Soporte Primium",
+                    "costM": 20
+                }
+            ]
         },
         {
             "id": 4,
             "idservicio": 5,
-            "items": []
+            "items": [
+                {
+                    "id": 1,
+                    "nombre": "Backup automático",
+                    "costM": 8
+                },
+                {
+                    "id": 2,
+                    "nombre": "Monitoreo 24/7",
+                    "costM": 10
+                },
+                {
+                    "id": 3,
+                    "nombre": "Administracion del Servidor",
+                    "costM": 25
+                },
+                {
+                    "id": 4,
+                    "nombre": "Seguridad Avanzada",
+                    "costM": 15
+                }
+            ]
         },
         {
             "id": 5,
-            "idservicio": 3,
-            "items": []
+            "idservicio": 4,
+            "items": [
+                {
+                    "id":1,
+                    "nombre":"Productos ilimitados",
+                    "costM":10
+                },
+                {
+                    "id":2,
+                    "nombre":"Pasarela de pago adicional",
+                    "costM":8
+                },
+                {
+                    "id": 3,
+                    "nombre":"Automatización de pedidos",
+                    "costM":15
+                },
+                {
+                    "id":4,
+                    "nombre":"Reportes avanzados",
+                    "costM":12
+                },
+                {
+                    "id":5,
+                    "nombre":"Segurudad Avanzada",
+                    "costM": 10
+                }
+            ]
         },
         {
             "id": 6,
             "idservicio": 2,
-            "items":[]
+            "items":[
+                {
+                    "id": 1,
+                    "nombre":"Backups avanzados",
+                    "costM": 5
+                },
+                {
+                    "id": 2,
+                    "nombre":"Seguridad Avanzada",
+                    "costM": 6
+                },
+                {
+                    "id": 3,
+                    "nombre":"Soporte Prioritario",
+                    "costM": 7
+                }
+            ]
         }
     ]
 }
