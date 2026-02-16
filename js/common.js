@@ -2,6 +2,7 @@
 $(document).ready(function () {
     //Cargar el Iciono
     const empresa = "eHostingCO"
+    const direccion = "C. de Basauri, 17, Moncloa - Aravaca, 28023 Madrid"
     $("#icono").append(empresa);
     const enVistas = window.location.pathname.includes("/views/")
     const base = enVistas ? ".." : "."
@@ -60,8 +61,10 @@ $(document).ready(function () {
     ];
     
     for(let i = 0; i < itemsFooter.length; i++){
-        $(".iconos").append(`<i class="${itemsFooter[i].ico}"></i>`)
+        $(".iconos").append(`<i class="${itemsFooter[i].ico}"></i>`);
     };
-    $("#empresa").append(empresa)
-    $("#derechos").append("Todos los derechos reservados &copy; 2026")
+    //Carga de Empresa, Direccion y derechos
+    $("#empresa").append(empresa);
+    $('#direc').append(direccion);
+    $("#derechos").append("Todos los derechos reservados &copy; 2026");
 });
