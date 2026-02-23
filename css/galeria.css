@@ -40,9 +40,11 @@
     border-radius: 1rem;
     padding: 1rem;
     background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .galery-container .prod-card:hover {
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 .galery-container .prod-card .prod-img {
     width: 100%;

@@ -23,57 +23,39 @@ try {
     xhr.addEventListener('readystatechange', () => {
         if(xhr.readyState !== 4) return;
         if(xhr.status >= 200 && xhr.status < 300){
-            const noticias = JSON.parse(xhr.responseText);
-            const data = noticias.articles;
-            indicadores.innerHTML = "";
-            indicadores.classList.add('carousel-indicators')
-            for (let i = 0; i < data.length; i++){
-                const boton = d.createElement('button');
-                boton.type = 'button';
-                boton.dataset.bsTarget = '#carouselExampleCaptions';
-                boton.dataset.bsSlideTo = i;
-                boton.setAttribute('aria-label', `Slide ${i + 1}`);
+            const data = JSON.parse(xhr.responseText);
+            const noticias = data.articles;
+            //Section Principal
+            const $galeria = d.getElementById("galeria");
+            const frag = d.createDocumentFragment();
 
-                if (i === 0) {
-                    boton.classList.add('active');
-                    boton.setAttribute('aria-current', 'true');
-                }
-
-                indicadores.appendChild(boton);
-            }
-            inicioCarrusel.innerHTML = "";
-            inicioCarrusel.classList.add('carousel-inner');
-            for (let i = 0; i < data.length; i++){
-                // contenedor de img principal
-                const divContenedor = d.createElement('div');
-                divContenedor.classList.add('carousel-item')
-                if (i === 0) {
-                    divContenedor.classList.add('active');
-                }
-                // imagenes
-                const img = d.createElement('img');
-                img.src = data[i].image || "https://picsum.dev/300/200";
-                img.classList.add('d-block', 'w-100');
-                img.alt = data[i].id;
-                // captions
-                const divCaptions = d.createElement('div')
-                divCaptions.classList.add('carousel-caption', 'd-none', 'd-md-block');
+            noticias.forEach((n) => {
+                //CARD
+                const card = d.createElement("article");
+                card.classList.add('card-noticia');
+                //imagen
+                const img= d.createElement('img');
+                img.classList.add('card-img');
+                img.src = n.image;
+                img.alt = n.id;
+                img.loading = "lazy";
                 //titulo
-                const h5Title = d.createElement('h5');
-                h5Title.textContent = data[i].title;
-                //contendo
-                const pContenido = d.createElement('p');
-                pContenido.textContent = data[i].description;
-
-                divCaptions.appendChild(h5Title);
-                divCaptions.appendChild(pContenido);
-
-                divContenedor.appendChild(img);
-                divContenedor.appendChild(divCaptions);
-
-                inicioCarrusel.appendChild(divContenedor);
-            }
-            
+                const h3 = d.createElement('h3');
+                h3.classList.add('card-titulo');
+                h3.textContent = n.title
+                //Link
+                const a = d.createElement("a");
+                a.classList.add("card-link");
+                a.href = n.url || "#";
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.textContent = "Leer más";
+                // Armar Card
+                card.append(img, h3, a);
+                frag.appendChild(card);
+            });
+            $galeria.innerHTML = "" //limpiar el dom
+            $galeria.appendChild(frag);
         }
         else {
             console.error(xhr.status);

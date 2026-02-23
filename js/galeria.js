@@ -49,6 +49,9 @@ $(function () {
                             type: 'button',
                             value: 'Presupuesto'
                         });
+                    $boton.on('click', function(){
+                        window.location.href = '../views/presupuesto.html'
+                    });
                     $contp.append($p, $p2, $p3);
                     $info.append($h2, $contp, $boton);
                     $card.append($img, $info);
