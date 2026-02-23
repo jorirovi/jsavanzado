@@ -1,0 +1,146 @@
+
+.main-galeria {
+    display: grid;
+    grid-template-rows: 450px 1fr;
+}
+.section1-galeria {
+    position: relative;
+}
+.galeria-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.vtext-galeria {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: var(--background-color);
+    text-align: center;
+    font-size: 35px;
+    font-family: textvideo, Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+/*Galeria extra para validar*/
+.section2-galery {
+    background-color: var(--amaril-3);
+}
+.galery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    place-content: center;
+    margin: 65px auto
+}
+.galery-container .prod-card {
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.galery-container .prod-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.galery-container .prod-card .prod-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+.galery-container .prod-card .prod-info .prod-title {
+    color: var(--rojos-1);
+    padding: .5rem 1rem;
+    font-size: .95rem;
+    font-weight: 500;
+    margin: 1rem 0 1.3rem;
+    background: var(--amaril-1);
+    width: fit-content;
+    border-radius: 50px;
+}
+.galery-container .prod-card .prod-info .prod-presup {
+    color: var(--azules-1);
+    padding: .5rem 1rem;
+    font-size: .95rem;
+    font-weight: 500;
+    margin: 1rem 0 1.3rem;
+    background: var(--rojos-1);
+    width: fit-content;
+    border-radius: 50px;
+    border: none;
+}
+.galery-container .prod-card .prod-info .prod-presup:hover {
+    cursor: pointer;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+.galery-container .prod-card .prod-info .prod-desc {
+    font-size: 1rem;
+    color: #000;
+    font-weight: 400;
+}
+/*Fin de esra galeria*/
+.swiper {
+    width: 100%;
+    height: 600px;
+    margin: 0 auto;
+    background: var(--rojos-1);
+}
+.tarjeta-lista .tarjeta-items .tarjeta-link {
+    --webkit-user-select: none;
+    width: 330px;
+    display: block;
+    background-color: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    transition: 0,2s ease;
+}
+.tarjeta-lista .tarjeta-items .tarjeta-link:hover {
+    border-color: var(--azules-1);
+}
+.tarjeta-lista .tarjeta-items {
+    list-style: none;
+}
+.tarjeta-lista .tarjeta-link .tarjeta-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.tarjeta-lista .tarjeta-link .referencia-img {
+    color: var(--rojos-1);
+    padding: .5rem 1rem;
+    font-size: .95rem;
+    font-weight: 500;
+    margin: 1rem 0 1.3rem;
+    background: var(--amaril-1);
+    width: fit-content;
+    border-radius: 50px;
+}
+.tarjeta-lista .tarjeta-link .tarjeta-titulo {
+    font-size: 1.19rem;
+    color: #000;
+    font-weight: 600;
+}
+.tarjeta-lista .tarjeta-link .tarjeta-boton {
+    height: 35px;
+    width: 35px;
+    color: var(--rojos-1);
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    border: 2px solid var(--rojos-1);
+    margin: 30px 0px 5px;
+    transform: rotate(-45deg);
+    transition: 0.4s ease;
+}
+.tarjeta-lista .tarjeta-link:hover .tarjeta-boton {
+    color: var(--azulez-4);
+    background: var(--rojos-2);
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/presupuesto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>eHostingCO - Presupuesto</title>
+</head>
+<body>
+    <div class="my-container">
+        <div class="cabecera">
+            <h1 id="icono" class="logo"></h1>
+            <div class="navegador">
+                <ul class="mimenu"></ul>
+            </div>
+        </div>
+        <div class="main">
+            <form name="frmpresupuesto" action="./galeria.html" class="frm-contacto">
+                <fieldset class="frm-datos">
+                    <legend>Datos Personales</legend>
+                    <input type="text" name="nombre" placeholder="Indique su Nombre" title="Formato de nombre incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü]+$" maxlength="15" required>
+                    <input type="text" name="apellido" placeholder="Indique su Apellido" title="Formato de Apellido Incorrecto" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" maxlength="40" required>
+                    <input type="text" name="tel" placeholder="Numero de telefono" title="Formato de Telefono incorrecto" maxlength="9" pattern="^[6789]\d{8}$" required>
+                    <input type="email" name="email" placeholder="Indique su Email" title="Formato de email incorrecto" required>
+                </fieldset>
+                <fieldset id="presupuesto">
+                    <legend>Presupuesto</legend>
+                    <fieldset id="servicios" class="servicios"></fieldset>
+                    <fieldset id="plazos" class="ocultar"></fieldset>
+                    <fieldset id="planes" class="ocultar"></fieldset>
+                    <fieldset id="totales" class="totales"></fieldset>
+                </fieldset>
+                <fieldset id="concentimiento"></fieldset>
+                <input class="botones" type="submit" value="Enviar">
+                <input class="botones" type="reset" value="Reset" id="limpiar">
+            </form>
+        </div>
+        <div class="piepri">
+            <h2 id="empresa"></h2>
+            <p id="direc"></p>
+            <div class="iconos"></div>
+            <p id="derechos"></p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../js/common.js"></script>
+    <script type="module" src="../js/presupuesto.js"></script>
+</body>
+</html>
